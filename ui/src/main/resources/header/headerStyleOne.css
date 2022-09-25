@@ -1,0 +1,60 @@
+.pane {
+    -fx-background-color: #c8354f;
+    -fx-font-family: Arial;
+}
+
+/* From left to right */
+
+#loadXMLButton {
+    -fx-font-size: 16px;
+    -fx-font-weight: Bold;
+    -fx-background-color: #ea4f46;
+}
+
+#loadXMLButton:hover {
+    -fx-background-color: #f55a51;
+}
+
+#infoLabel {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0), 1, 0, 1, 1);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+}
+
+.screen-button {
+    -fx-background-color:  #f6f6f6;
+    -fx-text-fill: #323232;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+}
+
+.screen-button:hover {
+    -fx-background-color:  #fbc2c2;
+    -fx-border-color: #ff7676;
+}
+
+.chosen-button {
+    -fx-background-color:  #fbc2c2;
+    -fx-border-color: #ff7676;
+}
+
+.choice-box, .text-field {
+    -fx-font-size: 14px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #505050;
+    -fx-border-width: 2;
+    -fx-text-fill: #505050;
+    -fx-highlight-fill: #505050;
+    -fx-highlight-text-fill: #ffffff;
+    -fx-accent: #505050;
+}
+
+.label {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 1, 0, 1, 1);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+}
+
+.text-field {
+    -fx-opacity: 1px;
+}

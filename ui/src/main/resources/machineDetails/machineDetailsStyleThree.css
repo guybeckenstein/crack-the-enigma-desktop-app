@@ -1,0 +1,138 @@
+.grid-pane {
+    -fx-background-color: #2ec1a7;
+}
+
+/* Status bar section */
+.status-vbox {
+    -fx-background-color: #0a0a0a;
+}
+
+.status-vbox #currentMachineConfigurationStatusLabel {
+    -fx-text-fill: #cdcdcd;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 1, 0, 1, 1);
+    -fx-font-size: 26px;
+    -fx-font-weight: Bold;
+}
+
+.status-vbox .status-flow-pane {
+    -fx-text-fill: #cdcdcd;
+    -fx-font-size: 18px;
+    -fx-hgap: 6px;
+}
+
+/* Configuration bar section */
+.configuration-vbox {
+    -fx-background-color: #3fd1b6;
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 20px;
+}
+
+.configuration-vbox .header-label {
+    -fx-effect: dropshadow(gaussian, rgb(255, 255, 255), 1, 0, 1, 1);
+    -fx-text-fill: #000000;
+}
+
+.configuration-vbox .text-field , .choice-box {
+    -fx-background-color: #000000;
+    -fx-border-color: #afafaf;
+    -fx-border-width: 2px;
+    -fx-text-overrun: ELLIPSIS;
+    -fx-text-fill: #afafaf;
+}
+
+.configuration-vbox .choice-box .label {
+    -fx-row-valignment: CENTER;
+}
+
+.configuration-vbox #dragAndDropSetCodeButton {
+    -fx-background-color: #ff7f7f;
+    -fx-text-fill: #d52a2a;
+}
+
+.configuration-vbox #dragAndDropSetCodeButton:hover {
+    -fx-background-color: #ff7200;
+    -fx-border-color: #faa05b;
+    -fx-text-fill: #181818;
+}
+
+.configuration-vbox #generateRandomCodeButton {
+    -fx-background-color: #249a86;
+    -fx-text-fill: #2a2a2a;
+}
+
+.configuration-vbox #generateRandomCodeButton:hover {
+    -fx-background-color: #198f7b;
+    -fx-border-color: #ab3f51;
+    -fx-text-fill: #181818;
+}
+
+.configuration-vbox .setCodeButton {
+    -fx-background-color: #0a0a0a;
+    -fx-text-fill: #b7b7b7;
+}
+
+.configuration-vbox .setCodeButton:hover {
+    -fx-background-color: #191919;
+    -fx-border-color: #7c7c7c;
+    -fx-text-fill: #ffffff;
+}
+
+.configuration-vbox #configurationLabel {
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0), 1, 0, 1, 1);
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+}
+
+/* Machine state bar section */
+.machine-state-vbox {
+    -fx-background-color: #72efb3;
+}
+
+.machine-state-vbox .title-label {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 32px;
+    -fx-font-weight: Bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.25), 5, 0.5, 0, 0);
+    -fx-text-fill: #000000;
+}
+
+.machine-state-vbox .information-label {
+    -fx-font-family: "Times New Roman";
+    -fx-font-size: 24px;
+    -fx-font-style: Italic;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.25), 5, 0.5, 0, 0);
+    -fx-text-fill: #000000;
+}
+
+.machine-state-vbox .button {
+    -fx-background-color: #da403a;
+}
+
+.machine-state-vbox .button:hover {
+    -fx-background-color: #f74ed5;
+    -fx-border-color: #f78a6c;
+}
+
+.button {
+    -fx-font-size: 18px;
+    -fx-font-weight: Bold;
+}
+
+.web-view {
+    -fx-font-smoothing-type: Gray;
+    -fx-background-color: #afafaf;
+}
+
+.web-view .scroll-bar {
+    -fx-background-color: #afafaf;
+    -fx-border-color: #2ec158;
+    -fx-border-width: 2px;
+}
+
+.web-view .scroll-bar .thumb {
+    -fx-background-color: #0a0a0a;
+}
+
+.web-view .scroll-bar .increment-button .increment-arrow, .scroll-bar .decrement-button .decrement-arrow {
+    -fx-background-color: #0a0a0a;
+}

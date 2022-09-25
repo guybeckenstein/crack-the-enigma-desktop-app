@@ -1,0 +1,129 @@
+#machineStateHBox {
+    -fx-background-color: #f6f6f6;
+    -fx-border-width: 4px;
+    -fx-border-color: #553fd1;
+}
+
+#machineStateHBox .label {
+    -fx-font-size: 12px;
+}
+
+#machineStateHBox #headerLabel {
+    -fx-text-fill: #8546eb;
+}
+
+#machineStateHBox .information-label {
+    -fx-text-fill: #323232;
+    -fx-font-size: 20px;
+    -fx-font-style: Italic;
+}
+
+#keyboardInputStackPane {
+    -fx-font-size: 14px;
+    -fx-background-color: #4830bf;
+}
+
+#keyboardInputStackPane .text-field {
+    -fx-border-width: 2px;
+    -fx-border-color: #505050;
+    -fx-font-size: 16px;
+}
+
+#keyboardInputStackPane #keyboardInputButton {
+    -fx-font-size: 18px;
+}
+
+#statisticsAndHistoryTextFlow {
+    -fx-background-color: #8546eb;
+}
+
+#statisticsAndHistoryTextFlow #header {
+    -fx-text-fill: #323232;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.25), 1, 0, 1, 1);
+}
+
+#statisticsAndHistoryTextFlow .machine-configuration-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 12px;
+    -fx-font-weight: Bold;
+    -fx-font-style: Italic;
+}
+
+#statisticsAndHistoryTextFlow .machine-details-text-flow .label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 10px;
+}
+
+#mouseInputGridPane {
+    -fx-background-color: #0f228c;
+    -fx-border-width: 6px;
+    -fx-border-color: #1815bf;
+}
+
+#mouseInputGridPane .header-label {
+    -fx-text-fill: #ffffff;
+}
+
+.header-label {
+    -fx-font-size: 28px;
+    -fx-font-weight: Bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 1, 0, 1, 1);
+}
+
+/* Bonus section - enigma machine keyboard dynamic input */
+
+#mouseInputGridPane .enigma-keyboard-button {
+    -fx-pref-width: 23px;
+    -fx-pref-height: 23px;
+    -fx-effect: none;
+    -fx-wrap-text: true;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Roboto;
+    -fx-font-size: 10px;
+    -fx-background-color: #1e1e1e;
+    -fx-background-radius: 0em;
+    -fx-border-color: #e6e6e6;
+    -fx-border-width: 3px;
+    -fx-border-radius: 0em;
+}
+
+#mouseInputGridPane .enigma-keyboard-button:pressed {
+    -fx-background-color: #ff4cf6;
+    -fx-text-fill: #1e1e1e;
+    -fx-border-color: #1e1e1e;
+}
+
+#mouseInputGridPane .pressed-keyboard-button-output {
+    -fx-background-color: #ff4cf6;
+    -fx-text-fill: #1e1e1e;
+    -fx-border-color: #1e1e1e;
+}
+
+#mouseInputGridPane .text-field {
+    -fx-font-size: 16px;
+    -fx-border-color: #505050;
+    -fx-border-width: 2px;
+}
+
+#mouseInputGridPane .header-label {
+    -fx-font-size: 18px;
+}
+
+#mouseInputGridPane .enigma-keyboard-button:disabled {
+    -fx-opacity: 1.0 ;
+}
+
+.button {
+    -fx-font-family: Roboto;
+    -fx-font-weight: Bold;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #8ac425;
+}
+
+.button:hover, .chosen-button {
+    -fx-text-fill: #323232;
+    -fx-border-color: #4f9900;
+}

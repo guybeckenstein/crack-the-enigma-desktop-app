@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import java.net.URL?>
+<HBox fx:id="headerHBox" alignment="TOP_CENTER" maxHeight="100.0" minHeight="20.0" prefHeight="100.0" prefWidth="900.0" spacing="10.0" styleClass="pane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.HeaderController">
+   <children>
+      <Button id="loadXMLButton" alignment="CENTER" contentDisplay="TOP" minHeight="20.0" minWidth="10.0" mnemonicParsing="false" onAction="#loadXML" prefHeight="64.0" prefWidth="110.0" text="Load XML" textFill="WHITE" HBox.hgrow="NEVER">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <HBox.margin>
+            <Insets top="6.0" />
+         </HBox.margin>
+      </Button>
+      <VBox maxHeight="100.0" minHeight="20.0" minWidth="50.0" spacing="2.0" HBox.hgrow="SOMETIMES">
+         <children>
+            <Label prefWidth="94.0" text="XML File Path:" textFill="GAINSBORO" VBox.vgrow="NEVER">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="2.0" top="3.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Label>
+            <TextField cache="true" editable="false" maxWidth="1.7976931348623157E308" minHeight="24.0" minWidth="100.0" prefHeight="24.0" prefWidth="214.0" promptText="No XML file path yet given..." VBox.vgrow="NEVER" fx:id="xmlFilePathTextField">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="6.0" right="-1.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </TextField>
+            <TextFlow maxWidth="1.7976931348623157E308" minWidth="100.0" nodeOrientation="LEFT_TO_RIGHT" VBox.vgrow="NEVER">
+               <children>
+                  <Label id="infoLabel" fx:id="loadXMLErrorLabel" alignment="TOP_LEFT" cache="true" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="214.0" textFill="GAINSBORO" wrapText="true">
+                     <font>
+                        <Font name="Arial" size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="2.0" top="3.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <padding>
+                  <Insets top="-4.0" />
+               </padding>
+            </TextFlow>
+         </children>
+         <HBox.margin>
+            <Insets left="2.0" />
+         </HBox.margin>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <padding>
+            <Insets top="1.0" />
+         </padding>
+      </VBox>
+      <Button fx:id="machineDetailsButton" alignment="CENTER" cache="true" contentDisplay="CENTER" ellipsisString="" minHeight="20.0" minWidth="10.0" mnemonicParsing="false" onAction="#machineDetailsButtonActionListener" prefHeight="64.0" prefWidth="130.0" styleClass="screen-button" text="  Machine  Details" textAlignment="CENTER" textFill="#323232" wrapText="true" HBox.hgrow="NEVER">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <cursor>
+            <Cursor fx:constant="DEFAULT" />
+         </cursor>
+         <HBox.margin>
+            <Insets top="6.0" />
+         </HBox.margin>
+      </Button>
+      <Button fx:id="decryptInputWithEnigmaButton" alignment="CENTER" cache="true" contentDisplay="CENTER" minHeight="20.0" minWidth="10.0" mnemonicParsing="false" onAction="#decryptInputWithEnigmaButtonActionListener" prefHeight="64.0" prefWidth="130.0" styleClass="screen-button" text="Decrypt Input Using Enigma" textAlignment="CENTER" textFill="#323232" wrapText="true" HBox.hgrow="NEVER">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets top="6.0" />
+         </HBox.margin>
+      </Button>
+      <Button fx:id="bruteForceButton" alignment="CENTER" contentDisplay="CENTER" minHeight="20.0" minWidth="10.0" mnemonicParsing="false" onAction="#bruteForceButtonActionListener" prefHeight="64.0" prefWidth="130.0" styleClass="screen-button" text="Brute Force" textAlignment="CENTER" textFill="#323232" wrapText="true" HBox.hgrow="NEVER">
+         <font>
+            <Font name="Arial Bold" size="16.0" />
+         </font>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <HBox.margin>
+            <Insets top="6.0" />
+         </HBox.margin>
+      </Button>
+      <VBox layoutX="-9.0" minHeight="20.0" minWidth="10.0" prefHeight="100.0" prefWidth="129.0" spacing="6.0" HBox.hgrow="SOMETIMES">
+         <children>
+            <Label alignment="CENTER" text="UI/UX Accessibility:" textFill="GAINSBORO" VBox.vgrow="NEVER">
+               <font>
+                  <Font name="Arial" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="1.0" />
+               </padding>
+            </Label>
+            <ChoiceBox fx:id="styleChoiceBox" prefHeight="24.0" prefWidth="150.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </ChoiceBox>
+            <ChoiceBox fx:id="animationChoiceBox" prefHeight="24.0" prefWidth="150.0" VBox.vgrow="NEVER">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </ChoiceBox>
+         </children>
+         <HBox.margin>
+            <Insets top="-4.0" />
+         </HBox.margin>
+      </VBox>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+   </padding>
+   <stylesheets>
+      <URL value="@headerStyleOne.css" />
+   </stylesheets>
+</HBox>

@@ -1,0 +1,5 @@
+1.	in directory 'EnigmaMachine\Engine\src'
+2.	add file Enigma-Ex2.xsd
+3.	open folder's cmd
+4.	type 'xjc -d . -p enigmaEngine.schemaBinding Enigma-Ex2.xsd'
+*	Enigma-Ex2.xsd is xml schema source

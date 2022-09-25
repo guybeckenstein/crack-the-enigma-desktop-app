@@ -1,0 +1,52 @@
+#screen1HBox {
+    -fx-background-color: transparent;
+}
+
+#screen1HBox #headerLabel {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 1), 3, 0, 0, 0);
+    -fx-font-size: 22px;
+    -fx-font-weight: Bold;
+}
+
+#screen1HBox .label {
+    -fx-text-alignment: CENTER;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Roboto;
+    -fx-effect: none;
+}
+
+#screen1HBox .header-label {
+    -fx-font-weight: Bold;
+}
+
+#screen1HBox #reflector {
+    -fx-background-color: #926fd9;
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em 0.1em 1em 0.1em;
+    -fx-font-size: 12px;
+}
+
+#screen1HBox #plugBoard {
+    -fx-background-color: #d94889;
+    -fx-border-width: 2px;
+    -fx-background-radius: 1em 0.1em 1em 0.1em;
+    -fx-font-size: 12px;
+}
+
+#screen1HBox .vbox {
+    -fx-background-color: #d3e3d5;
+    -fx-background-radius: 1em 0.1em 1em 0.1em;
+    -fx-background-insets: 4px, 2px, 4px, 2px;
+    -fx-padding: 8px 0px 0px 0px;
+    -fx-spacing: 30px;
+    -fx-pref-width: 60px;
+    -fx-alignment: TOP_CENTER;
+}
+
+#screen1HBox .vbox .label {
+    -fx-text-fill: #505050;
+}
+
+.label .text {
+    -fx-font-smoothing-type: Gray;
+}

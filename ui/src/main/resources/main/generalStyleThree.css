@@ -1,0 +1,70 @@
+.scroll-pane {
+    -fx-background-color: #ffffff;
+}
+
+.button {
+    -fx-background-radius: 1em;
+    -fx-border-radius: 0.7em;
+    -fx-border-width: 4px 4px 4px 4px;
+    -fx-background-insets: 1px;
+    -fx-cursor: Hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.25), 5, 0.5, 0, 0);
+}
+
+.label {
+    -fx-font-family: "Times New Roman";
+}
+
+.text-field {
+    -fx-font-family: "Times New Roman";
+    -fx-padding: 0em 0em 0em 0.25em;
+}
+
+.choice-box .label {
+    -fx-padding: 0.1em 0em 0em 0.25em;
+}
+
+.text {
+    -fx-font-smoothing-type: gray;
+    -fx-font-family: "Times New Roman";
+}
+
+.text-field {
+    -fx-prompt-text-fill: #afafaf;
+}
+
+.button, .choice-box, .scroll-pane, .text-field, .text-area, .list-view, .list-cell, .slider, .scroll-bar, .menu, .label, .scroll-pane, .slider .track, .slider .thumb, .progress-bar, .progress-bar .bar, .progress-bar .track {
+    -fx-focus-color: transparent;
+    -fx-accent: #afafaf;
+    -fx-background-insets: 0px;
+}
+
+.label {
+    -fx-focus-traversable: false;
+}
+
+.button:focused, .choice-box:focused, .scroll-pane:focused, .text-field:focused, .text-area:focused, .list-view:focused, .list-cell:focused, .slider:focused, .scroll-bar:focused, .menu:focused, .label:focused, .scroll-pane:focused,  .slider .track:focused, .slider .thumb:focused, .progress-bar:focused, .progress-bar .bar:focused, .progress-bar .track:focused {
+    -fx-faint-focus-color: transparent;
+    -fx-focus-color: transparent;
+    -fx-background-insets: 0px;
+}
+
+.info-label {
+    -fx-text-fill: #000000;
+    -fx-font-size: 14px;
+}
+
+.choice-box .label {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0), 1, 0, 1, 1);
+    -fx-text-fill: #afafaf;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #000000;
+    -fx-border-width: 2px;
+    -fx-border-color: #afafaf;
+}
+.choice-box .menu-item:focused, .menu-item:focused .label {
+    -fx-background-color: #afafaf;
+    -fx-text-fill: #000000;
+}

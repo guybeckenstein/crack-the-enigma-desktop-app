@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+
+<ScrollPane fx:id="mainScrollPane" cache="true" fitToHeight="true" fitToWidth="true" prefHeight="500.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.controllers.BruteForceController">
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <stylesheets>
+      <URL value="@bruteForceStyleOne.css" />
+   </stylesheets>
+   <content>
+      <VBox fx:id="bruteForceVBox">
+         <children>
+            <GridPane id="main" alignment="CENTER" maxHeight="1.7976931348623157E308" prefHeight="410.0" VBox.vgrow="SOMETIMES">
+              <columnConstraints>
+                <ColumnConstraints hgrow="NEVER" prefWidth="596.0" />
+                <ColumnConstraints hgrow="SOMETIMES" prefWidth="303.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="1.7976931348623157E308" minHeight="198.0" prefHeight="206.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="206.0" prefHeight="206.0" vgrow="NEVER" />
+              </rowConstraints>
+               <children>
+                  <Button mnemonicParsing="false" text="Button" />
+                  <VBox id="keyboardInputVBox" fx:id="keyboardInputVBox">
+                     <children>
+                        <HBox prefHeight="66.0" prefWidth="588.0">
+                           <children>
+                              <VBox prefHeight="200.0" prefWidth="230.0" styleClass="machine-state-vbox">
+                                 <children>
+                                    <Label styleClass="header-label" text="First Machine State:" />
+                                    <ScrollPane>
+                                       <content>
+                                          <Label fx:id="firstMachineStateLabel" styleClass="information-label" text="NaN">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="30.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox prefWidth="300.0" styleClass="machine-state-vbox">
+                                 <children>
+                                    <Label styleClass="header-label" text="Current Machine State:" />
+                                    <ScrollPane>
+                                       <content>
+                                          <Label fx:id="currentMachineStateLabel" styleClass="information-label" text="NaN">
+                                             <padding>
+                                                <Insets left="10.0" />
+                                             </padding>
+                                          </Label>
+                                       </content>
+                                    </ScrollPane>
+                                 </children>
+                                 <padding>
+                                    <Insets left="50.0" top="10.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="67.0" spacing="20.0">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <Button fx:id="enterCurrentKeyboardInputButton" mnemonicParsing="false" onAction="#enterCurrentKeyboardInputButtonActionListener" prefHeight="42.0" prefWidth="249.0" text="End of Keyboard Input" wrapText="true">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Button>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets top="9.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets top="6.0" />
+                                 </padding>
+                              </VBox>
+                              <VBox>
+                                 <children>
+                                    <Label styleClass="header-label" text="Input to Encrypt\Decrypt:">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="inputToEncryptDecryptInput" maxWidth="203.0" prefHeight="30.0" promptText="Enter keyboard input...">
+                                       <VBox.margin>
+                                          <Insets top="6.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                        <HBox prefHeight="67.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#resetMachineStateButtonActionListener" prefHeight="42.0" prefWidth="249.0" styleClass="input-button" text="Reset Current Machine State" wrapText="true">
+                                 <HBox.margin>
+                                    <Insets top="9.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <VBox id="outputEncryptedText">
+                                 <children>
+                                    <Label styleClass="header-label" text="Your Enigma Output:">
+                                       <VBox.margin>
+                                          <Insets />
+                                       </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="enigmaOutputTextField" editable="false" maxWidth="203.0" prefHeight="30.0" promptText="NaN">
+                                       <VBox.margin>
+                                          <Insets top="3.0" />
+                                       </VBox.margin>
+                                    </TextField>
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets top="-3.0" />
+                                 </HBox.margin>
+                                 <padding>
+                                    <Insets left="20.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                           <padding>
+                              <Insets left="30.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="searchVBox" alignment="TOP_CENTER" spacing="12.0" styleClass="search-dictionary-words-vbox" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <children>
+                        <Label maxWidth="300.0" styleClass="header-label" text="Search For Dictionary Words:">
+                           <VBox.margin>
+                              <Insets left="10.0" top="14.0" />
+                           </VBox.margin>
+                        </Label>
+                        <StackPane maxHeight="42.0" maxWidth="302.0" prefHeight="38.0" prefWidth="302.0">
+                           <children>
+                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="39.0" prefWidth="172.0">
+                                 <StackPane.margin>
+                                    <Insets bottom="1.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <Button cancelButton="true" mnemonicParsing="false" mouseTransparent="true" prefHeight="36.0" prefWidth="157.0" styleClass="stack-button">
+                                 <StackPane.margin>
+                                    <Insets left="-38.0" />
+                                 </StackPane.margin>
+                              </Button>
+                              <TextField fx:id="searchInputTextField" maxHeight="28.0" maxWidth="125.0" promptText="Type words here...">
+                                 <StackPane.margin>
+                                    <Insets right="14.0" />
+                                 </StackPane.margin>
+                              </TextField>
+                              <ImageView fitHeight="16.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@search%20magnifying%20glass.png" />
+                                 </image>
+                                 <StackPane.margin>
+                                    <Insets left="143.0" />
+                                 </StackPane.margin>
+                              </ImageView>
+                           </children>
+                        </StackPane>
+                        <ListView fx:id="searchDictionaryWordsListView" maxWidth="300.0" prefHeight="105.0" prefWidth="286.0">
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" />
+                           </VBox.margin></ListView>
+                     </children>
+                  </VBox>
+                  <GridPane id="decryptionManagerGridPane" fx:id="decryptionManagerGridPane" GridPane.rowIndex="1">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="41.0" minWidth="41.0" prefWidth="41.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="70.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="41.0" minWidth="41.0" prefWidth="41.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="36.0" minHeight="36.0" prefHeight="36.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label id="operationalLabel" styleClass="header-label" text="DM Operational" GridPane.columnIndex="3" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.rowSpan="2" GridPane.valignment="TOP">
+                           <GridPane.margin>
+                              <Insets left="5.0" />
+                           </GridPane.margin></Label>
+                        <Label styleClass="header-label" text="Mission Properties" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <Label styleClass="key-label" text="Total Agents:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label styleClass="key-label" text="Difficulty Level:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label styleClass="key-label" text="Mission Size:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label fx:id="totalAgentsLabel" styleClass="value-label" text="NaN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label fx:id="difficultyLevelLabel" styleClass="value-label" text="Easy" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label fx:id="missionSizeLabel" styleClass="value-label" text="NaN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Slider fx:id="agentsSliderInput" majorTickUnit="4.0" max="50.0" maxWidth="188.0" min="2.0" minorTickCount="2" prefHeight="14.0" prefWidth="188.0" showTickLabels="true" showTickMarks="true" value="2.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                           <padding>
+                              <Insets top="7.0" />
+                           </padding></Slider>
+                        <ChoiceBox fx:id="difficultyLevelInput" minHeight="28.0" prefHeight="28.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                        <TextField fx:id="missionSizeInput" minHeight="28.0" minWidth="188.0" prefWidth="188.0" promptText="Enter non-negative integer." GridPane.columnIndex="1" GridPane.rowIndex="7" />
+                        <TextFlow id="numberOfMissionsTextFlow" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                           <children>
+                              <Label text="There Are">
+                                 <padding>
+                                    <Insets right="4.0" />
+                                 </padding>
+                              </Label>
+                              <Label fx:id="totalMissionsLabel" text="NaN">
+                                 <padding>
+                                    <Insets right="4.0" />
+                                 </padding>
+                              </Label>
+                              <Label text="Missions." />
+                           </children>
+                           <GridPane.margin>
+                              <Insets left="10.0" top="5.0" />
+                           </GridPane.margin>
+                        </TextFlow>
+                        <Button fx:id="setDMProperties" minHeight="77.0" mnemonicParsing="false" onAction="#setDMPropertiesActionListener" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+                           <GridPane.margin>
+                              <Insets top="30.0" />
+                           </GridPane.margin>
+                        </Button>
+                     </children>
+                  </GridPane>
+                  <VBox id="decryptionManagerVBox" fx:id="dmButtonsVBox" alignment="CENTER" spacing="22.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <Button fx:id="startResumeDM" mnemonicParsing="false" onAction="#StartResumeDMActionListener" prefHeight="42.0" prefWidth="249.0" text="Start Decryption Manager" wrapText="true" />
+                        <Button fx:id="pauseDM" mnemonicParsing="false" onAction="#PauseDMActionListener" prefHeight="42.0" prefWidth="249.0" text="Pause Decryption Manager" wrapText="true" />
+                        <Button fx:id="stopDM" mnemonicParsing="false" onAction="#StopDMActionListener" prefHeight="42.0" prefWidth="249.0" text="Stop Decryption Manager" wrapText="true" />
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+            <HBox id="decryptionManagerStatusHBox" prefHeight="90.0" prefWidth="200.0" spacing="20.0" VBox.vgrow="SOMETIMES">
+               <children>
+                  <Label id="statusHeader" alignment="TOP_LEFT" prefWidth="232.0" text="DM Progress Status" wrapText="true" HBox.hgrow="SOMETIMES">
+                     <HBox.margin>
+                        <Insets left="20.0" top="28.0" />
+                     </HBox.margin>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" spacing="2.0">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <children>
+                        <Label id="finalCandidates" alignment="TOP_LEFT" contentDisplay="TOP" prefWidth="140.0" text="Final Candidates:" wrapText="true" />
+                        <HBox>
+                           <children>
+                              <ProgressBar fx:id="progressBar" prefWidth="90.0" progress="0.0" />
+                              <Label fx:id="progressPercentLabel" text="0 %">
+                                 <padding>
+                                    <Insets left="8.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Average Find Time:" wrapText="true">
+                           <padding>
+                              <Insets right="30.0" top="4.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets right="-1.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label fx:id="averageTime" alignment="TOP_LEFT" contentDisplay="TOP" text="0.0000" wrapText="true">
+                           <padding>
+                              <Insets right="99.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets right="2.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <ScrollPane centerShape="false" fitToHeight="true" fitToWidth="true" focusTraversable="false" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets bottom="10.0" right="50.0" top="10.0" />
+                     </HBox.margin>
+                     <content>
+                        <TextArea id="finalCandidatesTextArea" fx:id="finalCandidatesTextArea" centerShape="false" editable="false" focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="67.0" prefWidth="398.0" promptText="Results" wrapText="true" />
+                     </content>
+                  </ScrollPane>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>

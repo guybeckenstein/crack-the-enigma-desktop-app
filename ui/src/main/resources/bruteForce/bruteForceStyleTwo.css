@@ -1,0 +1,219 @@
+#main {
+    -fx-border-width: 6px;
+    -fx-border-color: #1815bf;
+}
+
+#keyboardInputVBox {
+    -fx-background-color: #4830bf;
+}
+
+#keyboardInputVBox .machine-state-vbox .header-label {
+    -fx-text-fill: #323232;
+    -fx-font-size: 18px;
+}
+
+#keyboardInputVBox .information-label {
+    -fx-text-fill: #323232;
+    -fx-font-size: 12px;
+    -fx-font-style: Italic;
+}
+
+#keyboardInputVBox .button {
+    -fx-background-color: #8ac425;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: Roboto;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+}
+
+#keyboardInputVBox .text-field {
+    -fx-font-size: 16px;
+    -fx-border-color: #505050;
+    -fx-border-width: 2px;
+}
+
+.search-dictionary-words-vbox {
+    -fx-background-color: #8546eb;
+}
+
+.search-dictionary-words-vbox .button {
+    -fx-effect: none;
+    -fx-background-color: #bca3e5;
+    -fx-border-radius: 0px;
+    -fx-background-radius: 0px;
+}
+
+.search-dictionary-words-vbox .stack-button {
+    -fx-background-color: #8546eb;
+    -fx-background-radius: 0;
+    -fx-border-width: 1px;
+    -fx-border-radius: 0;
+    -fx-border-color: #bca3e5;
+}
+
+.search-dictionary-words-vbox .text-field {
+    -fx-background-color: transparent;
+    -fx-font-weight: Bold;
+    -fx-text-fill: #796d94;
+    -fx-padding: 0 0 0 -10;
+    -fx-prompt-text-fill: #796d94;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane {
+    -fx-background-color: #f0f0f0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 1, 100, 0, 0);
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .viewport {
+    -fx-background-color: #f0f0f0;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .list-view, .thumb {
+    -fx-background-color: #f0f0f0;
+    -fx-font-weight: Bold;
+    -fx-font-size: 10px;
+    -fx-text-fill: #000000;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .track {
+    -fx-background-color: none;
+}
+
+.search-dictionary-words-vbox #dictionaryScrollPane .track-background {
+    -fx-background-color: #c4c4c4;
+}
+
+.header-label {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-weight: Bold;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 1, 0, 1, 1);
+}
+
+#decryptionManagerGridPane {
+    -fx-background-color: #0f228c;
+}
+
+#decryptionManagerGridPane .slider .track {
+    -fx-background-color: #120eed;
+    -fx-background-radius: 0;
+    -fx-pref-height: 12px;
+}
+
+#decryptionManagerGridPane .slider .thumb {
+    -fx-background-color: #505050;
+    -fx-background-radius: 0;
+    -fx-pref-height: 12px;
+}
+
+#decryptionManagerGridPane .slider .axis:bottom {
+    -fx-background-color: transparent;
+    -fx-max-height: 0px;
+    -fx-tick-length: 5px;
+    -fx-tick-color: #120eed;
+    -fx-tick-label-fill: #120eed;
+    -fx-tick-label-gap: 0px;
+    -fx-tick-label-font-family: Roboto;
+}
+
+#decryptionManagerGridPane .label, .button {
+
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+}
+
+#decryptionManagerGridPane #operationalLabel {
+    -fx-font-size: 28px;
+}
+
+#decryptionManagerGridPane .value-label {
+    -fx-font-weight: Normal;
+}
+
+#decryptionManagerGridPane .text-field, .choice-box {
+    -fx-background-color: #5768c9;
+    -fx-background-radius: 0em;
+    -fx-border-color: #120eed;
+    -fx-border-radius: 0em;
+    -fx-border-width: 2px;
+    -fx-text-fill: #323232;
+    -fx-prompt-text-fill: #323232;
+    -fx-font-size: 12px;
+}
+
+#decryptionManagerGridPane .choice-box .open-button .arrow {
+    -fx-background-color: #323232;
+}
+
+#decryptionManagerGridPane .button {
+    -fx-background-color: #8546eb;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 26px;
+}
+
+#decryptionManagerGridPane #numberOfMissionsTextFlow .label {
+    -fx-font-size: 16px;
+}
+
+#decryptionManagerVBox {
+    -fx-background-color: #3145b5;
+}
+
+#decryptionManagerVBox .button {
+    -fx-background-color: #0f228c;
+    -fx-font-family: Roboto;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+    -fx-text-fill: #ffffff;
+}
+
+#decryptionManagerVBox .button:hover, .chosen-button {
+    -fx-background-color: #8ac425;
+}
+
+#decryptionManagerStatusHBox {
+    -fx-background-color: #e6e6e6;
+}
+
+#decryptionManagerStatusHBox .label {
+    -fx-text-fill: #616161;
+    -fx-font-weight: Bold;
+}
+
+#decryptionManagerStatusHBox #statusHeader {
+    -fx-font-size: 22px;
+}
+
+#decryptionManagerStatusHBox #finalCandidates {
+    -fx-font-size: 14px;
+}
+
+#decryptionManagerStatusHBox .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-effect: dropshadow(gaussian, rgba(204, 204, 204, 1.0), 1, 100, 0, 0);
+}
+
+#decryptionManagerStatusHBox .scroll-pane .list-view, .viewport {
+    -fx-background-color: #ffffff;
+}
+
+#decryptionManagerStatusHBox .scroll-pane .track-background, .scroll-pane .track {
+    -fx-background-color: #bbbbbb;
+    -fx-border-width: 0px;
+}
+
+.scroll-pane .track {
+    -fx-effect: none;
+}
+
+.scroll-pane .thumb, .increment-button .increment-arrow, .decrement-button .decrement-arrow {
+    -fx-background-color: #505050;
+    -fx-effect: none;
+}
+
+.button {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 1, 100, 0, 0);
+}
+
+
