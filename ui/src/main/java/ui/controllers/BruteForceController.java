@@ -5,6 +5,7 @@ import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.Task;
+import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import ui.impl.Trie;
 import ui.impl.models.MachineStateConsole;
@@ -169,6 +170,14 @@ public class BruteForceController {
         firstMachineStateLabel.textProperty().bind(machineStatesConsole.firstMachineStateProperty());
         currentMachineStateLabel.textProperty().bind(machineStatesConsole.currentMachineStateProperty());
 
+    }
+
+    @FXML
+    public void exit() {
+
+        if (dmTask != null) {
+            dmTask.cancel();
+        }
     }
 
     private void updateMissionsLabel() {

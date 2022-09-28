@@ -4,23 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/interfaces/TrieInterface.java" afterDir="false" />
+    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/MachineCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/WordsDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/WordsDictionary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/impl/Trie.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/impl/Trie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleOne.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleThree.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleTwo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/main/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/main/app.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -151,8 +137,16 @@
       <workItem from="1664041886668" duration="17737000" />
       <workItem from="1664102773380" duration="10651000" />
       <workItem from="1664193599888" duration="11906000" />
-      <workItem from="1664367439857" duration="24515000" />
+      <workItem from="1664367439857" duration="25500000" />
     </task>
+    <task id="LOCAL‎-00001" summary="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works">
+      <created>1664399424005</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL‎-00001" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1664399424006</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,10 +157,26 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works" />
+    <option name="LAST_COMMIT_MESSAGE" value="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works" />
   </component>
 </project>
