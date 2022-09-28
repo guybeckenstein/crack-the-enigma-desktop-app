@@ -1,9 +1,11 @@
 package ui.impl;
 
+import ui.interfaces.TrieInterface;
+
 import java.util.*;
 
 // A class to store a Trie node
-public class Trie
+public class Trie implements TrieInterface
 {
     private boolean isLeaf;
     private Map<Character, Trie> children;
@@ -18,6 +20,7 @@ public class Trie
     }
 
     // Iterative function to insert a string into a Trie
+    @Override
     public void insert(String key)
     {
 
@@ -38,6 +41,7 @@ public class Trie
         curr.isLeaf = true;
     }
 
+    @Override
     public List<String> getWordsWithPrefix(String prefix) {
         Trie curr = this;
         for (char c : prefix.toCharArray()) {

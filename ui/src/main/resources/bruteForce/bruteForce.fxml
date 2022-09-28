@@ -235,9 +235,9 @@
                            </padding></Slider>
                         <ChoiceBox fx:id="difficultyLevelInput" minHeight="28.0" prefHeight="28.0" prefWidth="188.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
                         <TextField fx:id="missionSizeInput" minHeight="28.0" minWidth="188.0" prefWidth="188.0" promptText="Enter non-negative integer." GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                        <TextFlow id="numberOfMissionsTextFlow" GridPane.columnIndex="3" GridPane.rowIndex="7">
+                        <TextFlow id="numberOfMissionsTextFlow" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="7">
                            <children>
-                              <Label text="There Are">
+                              <Label text="Each Agent Does">
                                  <padding>
                                     <Insets right="4.0" />
                                  </padding>
@@ -250,7 +250,7 @@
                               <Label text="Missions." />
                            </children>
                            <GridPane.margin>
-                              <Insets left="10.0" top="5.0" />
+                              <Insets left="100.0" />
                            </GridPane.margin>
                         </TextFlow>
                         <Button fx:id="setDMProperties" minHeight="77.0" mnemonicParsing="false" onAction="#setDMPropertiesActionListener" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
@@ -276,7 +276,7 @@
                         <Insets left="20.0" top="28.0" />
                      </HBox.margin>
                   </Label>
-                  <VBox alignment="TOP_CENTER" spacing="2.0">
+                  <VBox spacing="2.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -292,20 +292,17 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Average Find Time:" wrapText="true">
-                           <padding>
-                              <Insets right="30.0" top="4.0" />
-                           </padding>
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Avg Agent Find Time:" wrapText="true" VBox.vgrow="NEVER">
                            <VBox.margin>
-                              <Insets right="-1.0" />
+                              <Insets />
                            </VBox.margin>
-                        </Label>
-                        <Label fx:id="averageTime" alignment="TOP_LEFT" contentDisplay="TOP" text="0.0000" wrapText="true">
                            <padding>
-                              <Insets right="99.0" />
+                              <Insets top="4.0" />
                            </padding>
+                        </Label>
+                        <Label fx:id="averageTime" alignment="TOP_LEFT" contentDisplay="TOP" text="0.0000" wrapText="true" VBox.vgrow="NEVER">
                            <VBox.margin>
-                              <Insets right="2.0" />
+                              <Insets />
                            </VBox.margin>
                         </Label>
                      </children>

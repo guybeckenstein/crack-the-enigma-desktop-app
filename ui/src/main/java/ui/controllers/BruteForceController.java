@@ -3,10 +3,10 @@ package ui.controllers;
 import automateDecryption.Difficulty;
 import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.Task;
 import javafx.scene.layout.GridPane;
 import ui.impl.Trie;
-import ui.controllers.AppController;
 import ui.impl.models.MachineStateConsole;
 import dto.EngineDTO;
 import enigmaEngine.exceptions.InvalidCharactersException;
@@ -69,7 +69,8 @@ public class BruteForceController {
     @FXML Label averageTime;
     private EnigmaEngine taskCurrentConfiguration;
     private ui.decryptionManager.DecryptionManagerTask dmTask;
-    private long startingDmTaskTime;
+    private BooleanProperty dmResult;
+    private String timeElapsed = "";
     @FXML private ScrollPane mainScrollPane;
 
 
@@ -228,32 +229,50 @@ public class BruteForceController {
 
     @FXML
     void StartResumeDMActionListener(ActionEvent actionEvent) {
-        if (startResumeDM.getText().contains("Start")) {
-
-            startResumeDM.setText(startResumeDM.getText().replace("Start", "Resume"));
-        }
-
         toggleTaskButtons(true);
 
-        startingDmTaskTime = System.nanoTime();
-        dmTask = new ui.decryptionManager.DecryptionManagerTask(
-                enigmaOutputTextField.getText(), Long.parseLong(totalMissionsLabel.getText()),
-                Integer.parseInt(totalAgentsLabel.getText()), this, () -> dmButtonsVBox.setDisable(true));
+        if (startResumeDM.getText().contains("Resume")) {
+            synchronized (dmTask) {
+                dmTask.setPaused(false);
+                dmTask.notifyAll();
+            }
+        } else if (startResumeDM.getText().contains("Start")) {
+            dmTask = new ui.decryptionManager.DecryptionManagerTask(
+                    enigmaOutputTextField.getText(), Long.parseLong(totalMissionsLabel.getText()),
+                    Integer.parseInt(totalAgentsLabel.getText()), this,
+                    () -> {
+                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "This took " + timeElapsed + " seconds.");
+                        alert.setTitle("Done!");
+                        alert.setHeaderText("Done!");
+                        alert.showAndWait();
+                        dmTask.cancel();
+                        dmTask = null;
+                        startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
+            });
 
-        Thread th = new Thread(dmTask);
-        th.setDaemon(true);
-        th.start();
+            Thread th = new Thread(dmTask);
+            th.start();
+            System.out.println("Starting the task...");
+        } else {
+            throw new RuntimeException();
+        }
+
+        if (startResumeDM.getText().contains("Start")) {
+            startResumeDM.setText(startResumeDM.getText().replace("Start", "Resume"));
+        }
     }
 
     public EnigmaEngine getTaskCurrentConfiguration() {
         return taskCurrentConfiguration;
     }
 
-    public synchronized void updateValues(String newCandidateWords, String averageElapsedTime) {
-        if (finalCandidatesTextArea.getText().equals("")) {
-            finalCandidatesTextArea.setText(newCandidateWords);
-        } else {
-            finalCandidatesTextArea.setText(finalCandidatesTextArea.getText() + "\n" + newCandidateWords);
+    public synchronized void updateValues(Queue<String> newCandidates, String averageElapsedTime) {
+        while (!newCandidates.isEmpty()) {
+            if (finalCandidatesTextArea.getText().equals("")) {
+                finalCandidatesTextArea.setText(newCandidates.remove());
+            } else {
+                finalCandidatesTextArea.setText(finalCandidatesTextArea.getText() + "\n" + newCandidates.remove());
+            }
         }
         averageTime.setText(averageElapsedTime);
     }
@@ -269,8 +288,7 @@ public class BruteForceController {
 
     @FXML
     void PauseDMActionListener(ActionEvent actionEvent) {
-//        startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
-        setDMProperties.setDisable(false);
+        dmTask.setPaused(true);
         startResumeDM.setDisable(false);
         pauseDM.setDisable(true);
     }
@@ -415,11 +433,11 @@ public class BruteForceController {
         // finalCandidatesTextArea.textProperty().bind(aTask.valueProperty());
     }
 
-    public void unbindTaskFromUIComponents() {
-        // finalCandidatesTextArea.textProperty().unbind();
+    public void unbindTaskFromUIComponents(String timeElapsed) {
         progressBar.progressProperty().unbind();
         progressPercentLabel.textProperty().unbind();
         toggleTaskButtons(false);
+        this.timeElapsed = timeElapsed;
     }
 
     public void onTaskFinished(Optional<Runnable> onFinish) {

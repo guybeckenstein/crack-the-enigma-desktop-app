@@ -4,7 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="" />
+    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/interfaces/TrieInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/MachineCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/WordsDictionary.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/WordsDictionary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/impl/Trie.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/impl/Trie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForceStyleTwo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/main/app.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/main/app.fxml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,10 +31,13 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -26,6 +46,7 @@
     <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectId" id="2F2ogXqFnF6pH0mJuwo0m2M1jGO" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -34,6 +55,7 @@
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
     &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
@@ -104,8 +126,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
-        <item itemvalue="JAR Application.ui-1.0-SNAPSHOT-jar-with-dependencies.jar" />
         <item itemvalue="JAR Application.ui-1.0-SNAPSHOT.jar" />
+        <item itemvalue="JAR Application.ui-1.0-SNAPSHOT-jar-with-dependencies.jar" />
         <item itemvalue="JAR Application.crack-the-enigma-1.0-SNAPSHOT-jar-with-dependencies.jar" />
       </list>
     </recent_temporary>
@@ -127,27 +149,24 @@
       <workItem from="1663801349669" duration="2740000" />
       <workItem from="1663934518202" duration="11298000" />
       <workItem from="1664041886668" duration="17737000" />
-      <workItem from="1664102773380" duration="10046000" />
+      <workItem from="1664102773380" duration="10651000" />
+      <workItem from="1664193599888" duration="11906000" />
+      <workItem from="1664367439857" duration="24515000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java</url>
-          <line>258</line>
-          <option name="timeStamp" value="96" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="finalCandidatesTextArea.getText()" language="JAVA" />
-      </configuration>
-    </watches-manager>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

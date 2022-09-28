@@ -24,12 +24,12 @@ public class MachineCode {
         ABC = abc;
         ABCSize = abc.length();
     }
-    public List<Character> getStartingPositions() {
-        return startingPositions;
-    }
 
     public List<Integer> getRotorsIDInorder() {
         return rotorsIDInorder;
+    }
+    public List<Character> getStartingPositions() {
+        return startingPositions;
     }
 
     public Reflector.ReflectorID getSelectedReflectorID() {
@@ -52,13 +52,6 @@ public class MachineCode {
                 break;
             }
         }
-    }
-
-    public MachineCode clone() {
-        List<Integer> rotorsIDInorderClone = rotorsIDInorder.stream().collect(Collectors.toList());
-        List<Character> startingPositionsClone = startingPositions.stream().collect(Collectors.toList());
-        List<Pair<Character, Character>> plugBoardClone = plugBoard.stream().map(i -> new Pair<>(i.getKey(), i.getValue())).collect(Collectors.toList());
-        return new MachineCode(rotorsIDInorderClone, startingPositionsClone, selectedReflectorID, plugBoardClone, ABC);
     }
 
     @Override

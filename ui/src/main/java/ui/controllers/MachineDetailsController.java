@@ -1,7 +1,5 @@
 package ui.controllers;
 
-import ui.controllers.MachineStateController;
-import ui.controllers.AppController;
 import ui.impl.models.MachineStateConsole;
 import ui.impl.models.Specifications;
 import enigmaEngine.exceptions.InvalidCharactersException;
@@ -172,7 +170,7 @@ public class MachineDetailsController {
         reflectorChoiceBox.setValue(reflectorChoiceBox.getItems().get(0));
     }
 
-    public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
+    public void updateScreen(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
         reflectorChoiceBox.setItems(FXCollections.observableArrayList(choiceBoxItems));
         reflectorChoiceBox.setValue(reflectorChoiceBox.getItems().get(0));
 

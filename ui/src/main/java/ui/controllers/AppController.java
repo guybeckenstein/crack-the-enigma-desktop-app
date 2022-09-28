@@ -2,7 +2,6 @@ package ui.controllers;
 
 import automateDecryption.Difficulty;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
 import ui.impl.ModelMain;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
@@ -15,14 +14,13 @@ public class AppController {
     static private ModelMain modelMainApp;
     @FXML private BorderPane mainBorderPane;
     // Sub components
-    @FXML private StackPane stackPaneContainer;
-    @FXML private ScrollPane screen1Component;
-    @FXML private ScrollPane screen2Component;
-    @FXML private ScrollPane screen3Component;
+    @FXML private ScrollPane machineDetailsComponent;
+    @FXML private ScrollPane encryptDecryptComponent;
+    @FXML private ScrollPane bruteForceComponent;
     @FXML private HeaderController headerComponentController;
-    @FXML private MachineDetailsController screen1ComponentController;
-    @FXML private EncryptDecryptController screen2ComponentController;
-    @FXML private BruteForceController screen3ComponentController;
+    @FXML private MachineDetailsController machineDetailsComponentController;
+    @FXML private EncryptDecryptController encryptDecryptComponentController;
+    @FXML private BruteForceController bruteForceComponentController;
 
     public AppController() {
         modelMainApp = new ModelMain();
@@ -30,12 +28,12 @@ public class AppController {
 
     @FXML
     public void initialize() {
-        if (headerComponentController != null && screen1ComponentController != null &&
-                screen2ComponentController != null && screen3ComponentController != null) {
+        if (headerComponentController != null && machineDetailsComponentController != null &&
+                encryptDecryptComponentController != null && bruteForceComponentController != null) {
             headerComponentController.setMainController(this);
-            screen1ComponentController.setMainController(this);
-            screen2ComponentController.setMainController(this);
-            screen3ComponentController.setMainController(this);
+            machineDetailsComponentController.setMainController(this);
+            encryptDecryptComponentController.setMainController(this);
+            bruteForceComponentController.setMainController(this);
         }
     }
 
@@ -44,53 +42,53 @@ public class AppController {
     }
 
     public void updateScreens(String currentMachineState) {
-        screen1ComponentController.updateMachineStateAndStatus(currentMachineState);
-        screen2ComponentController.updateMachineStateAndStatistics(currentMachineState);
-        screen3ComponentController.updateMachineStateAndDictionary(currentMachineState);
+        machineDetailsComponentController.updateMachineStateAndStatus(currentMachineState);
+        encryptDecryptComponentController.updateMachineStateAndStatistics(currentMachineState);
+        bruteForceComponentController.updateMachineStateAndDictionary(currentMachineState);
     }
 
     public void reset() {
-        screen1ComponentController.reset();
+        machineDetailsComponentController.reset();
     }
     public void resetScreens(boolean bool, Object controller) {
-        screen1ComponentController.resetMachineStateAndStatus();
-        screen2ComponentController.resetMachineStateAndStatistics(bool);
-        screen3ComponentController.resetMachineStateAndEnigmaOutput(bool, controller);
+        machineDetailsComponentController.resetMachineStateAndStatus();
+        encryptDecryptComponentController.resetMachineStateAndStatistics(bool);
+        bruteForceComponentController.resetMachineStateAndEnigmaOutput(bool, controller);
     }
-    public void updateScreenOne(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
-        screen1ComponentController.updateScreenOne(choiceBoxItems, numberOfRotors, numberOfReflectors);
+    public void updateMachineDetailsScreen(List<String> choiceBoxItems, String numberOfRotors, String numberOfReflectors) {
+        machineDetailsComponentController.updateScreen(choiceBoxItems, numberOfRotors, numberOfReflectors);
     }
     public void initializeMachineStates(String machineStateConsoleString) {
-        screen2ComponentController.initializeMachineStatesAndMouseInputKeyboard();
-        screen3ComponentController.initializeMachineStates(machineStateConsoleString);
+        encryptDecryptComponentController.initializeMachineStatesAndMouseInputKeyboard();
+        bruteForceComponentController.initializeMachineStates(machineStateConsoleString);
     }
 
     public void updateScreensDisability(boolean bool) {
-        screen2ComponentController.setEnigmaDecryptionInputDisability(bool);
-        screen3ComponentController.setBruteForceDisability(bool);
+        encryptDecryptComponentController.setEnigmaDecryptionInputDisability(bool);
+        bruteForceComponentController.setBruteForceDisability(bool);
     }
 
     public void updateLabelTextsToEmpty(Object component) {
         headerComponentController.updateLabelTextsToEmpty();
-        screen1ComponentController.updateLabelTextsToEmpty();
-        screen2ComponentController.updateLabelTextsToEmpty(component);
-        screen3ComponentController.updateLabelTextsToEmpty();
+        machineDetailsComponentController.updateLabelTextsToEmpty();
+        encryptDecryptComponentController.updateLabelTextsToEmpty(component);
+        bruteForceComponentController.updateLabelTextsToEmpty();
     }
 
     public void updateDynamicKeyboardsAndAmountAgents(int amountAgents) {
-        screen2ComponentController.updateDynamicKeyboards();
-        screen3ComponentController.updateAgentsMaxSizeAndDictionary(amountAgents);
+        encryptDecryptComponentController.updateDynamicKeyboards();
+        bruteForceComponentController.updateAgentsMaxSizeAndDictionary(amountAgents);
     }
 
     // Swap screens
-    public void changeToScreen1() {
-        screen1Component.toFront();
+    public void changeToMachineDetailsScreen() {
+        machineDetailsComponent.toFront();
     }
-    public void changeToScreen2() {
-        screen2Component.toFront();
+    public void changeToEncryptDecryptScreen() {
+        encryptDecryptComponent.toFront();
     }
-    public void changeToScreen3() {
-        screen3Component.toFront();
+    public void changeToBruteForceScreen() {
+        bruteForceComponent.toFront();
     }
 
 
@@ -102,16 +100,6 @@ public class AppController {
         modelMainApp.setDMProperties(agents, missionSize, difficulty);
     }
 
-    public void startResumeDM() {
-        modelMainApp.startResumeDM();
-    }
-
-    public void setEncryptedText(String text) {
-        modelMainApp.setEncryptedText(text);
-    }
-
-
-
     public void updateStylesheet(Number num) {
         mainBorderPane.getStylesheets().remove(0);
         if (num.equals(0)) {
@@ -122,12 +110,12 @@ public class AppController {
             mainBorderPane.getStylesheets().add(getClass().getClassLoader().getResource("main/generalStyleThree.css").toString());
         }
         headerComponentController.updateStylesheet(num);
-        screen1ComponentController.updateStylesheet(num);
-        screen2ComponentController.updateStylesheet(num);
-        screen3ComponentController.updateStylesheet(num);
+        machineDetailsComponentController.updateStylesheet(num);
+        encryptDecryptComponentController.updateStylesheet(num);
+        bruteForceComponentController.updateStylesheet(num);
     }
 
     public void updateAnimation(Number num) {
-        screen2ComponentController.updateAnimation(num);
+        encryptDecryptComponentController.updateAnimation(num);
     }
 }

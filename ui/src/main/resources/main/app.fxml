@@ -11,9 +11,9 @@
          <center>
             <StackPane fx:id="stackPaneContainer" BorderPane.alignment="CENTER">
                <children>
-                  <fx:include fx:id="screen3Component" source="../bruteForce/bruteForce.fxml" BorderPane.alignment="BOTTOM_CENTER" />
-                  <fx:include fx:id="screen2Component" source="../encryptDecrypt/encryptDecrypt.fxml" BorderPane.alignment="BOTTOM_CENTER" />
-                  <fx:include fx:id="screen1Component" source="../machineDetails/machineDetails.fxml" BorderPane.alignment="BOTTOM_CENTER" />
+                  <fx:include fx:id="bruteForceComponent" source="../bruteForce/bruteForce.fxml" BorderPane.alignment="BOTTOM_CENTER" />
+                  <fx:include fx:id="encryptDecryptComponent" source="../encryptDecrypt/encryptDecrypt.fxml" BorderPane.alignment="BOTTOM_CENTER" />
+                  <fx:include fx:id="machineDetailsComponent" source="../machineDetails/machineDetails.fxml" BorderPane.alignment="BOTTOM_CENTER" />
                </children>
             </StackPane>
          </center>

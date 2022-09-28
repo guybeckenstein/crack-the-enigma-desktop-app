@@ -1,7 +1,6 @@
 package ui.controllers;
 
 import enigmaEngine.exceptions.*;
-import ui.controllers.AppController;
 import enigmaEngine.interfaces.Reflector;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -70,7 +69,7 @@ public class HeaderController {
         machineDetailsButton.getStyleClass().add("chosen-button");
         decryptInputWithEnigmaButton.getStyleClass().remove("chosen-button");
         bruteForceButton.getStyleClass().remove("chosen-button");
-        mainController.changeToScreen1();
+        mainController.changeToMachineDetailsScreen();
     }
 
     @FXML
@@ -78,7 +77,7 @@ public class HeaderController {
         machineDetailsButton.getStyleClass().remove("chosen-button");
         decryptInputWithEnigmaButton.getStyleClass().add("chosen-button");
         bruteForceButton.getStyleClass().remove("chosen-button");
-        mainController.changeToScreen2();
+        mainController.changeToEncryptDecryptScreen();
     }
 
     @FXML
@@ -86,7 +85,7 @@ public class HeaderController {
         machineDetailsButton.getStyleClass().remove("chosen-button");
         decryptInputWithEnigmaButton.getStyleClass().remove("chosen-button");
         bruteForceButton.getStyleClass().add("chosen-button");
-        mainController.changeToScreen3();
+        mainController.changeToBruteForceScreen();
     }
 
     @FXML
@@ -109,7 +108,7 @@ public class HeaderController {
                 // Update reflector choice box options
                 List<Reflector.ReflectorID> unsortedReflectors = AppController.getConsoleApp().getEngine().getReflectors();
                 Collections.sort(unsortedReflectors);
-                mainController.updateScreenOne(
+                mainController.updateMachineDetailsScreen(
                         unsortedReflectors.stream().map(String::valueOf).collect(Collectors.toList()),
                         Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getTotalNumberOfRotors()),
                         Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getTotalReflectors())
