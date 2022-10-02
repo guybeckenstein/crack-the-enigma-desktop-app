@@ -4,63 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/src/main/java/decryptionManager/WordsDictionary.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/Combinations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/Permutations.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/agent/AgentThreadFactory.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/producer/AbstractProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/producer/BlockingProducer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/threadPool/AgentMission.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/threadPool/ThreadPool.java" afterDir="false" />
+    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="pom file updated">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/Agent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/AgentFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/CandidateWords.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/DecryptionManager.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/DecryptionManagerTask.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/Difficulty.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/Difficulty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/Test.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/automateDecryption/test2.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/dto/EngineDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/dto/EngineDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/dto/xmlDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/dto/XmlDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/CreateAndValidateEnigmaComponentsImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/InitializeEnigmaEngineComponents.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/InitializeEnigmaEngineComponents.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/MachineCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/dto/ConfigurationDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/WordsDictionary.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/exceptions/TaskIsCanceledException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/EnigmaEngineImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/EnigmaEngineImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/InitializeEnigmaFromXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/InitializeEnigmaFromXML.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/PlugBoardImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/PlugBoardImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/ReflectorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/ReflectorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/RotorImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/impl/RotorImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/EnigmaEngine.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/EnigmaEngine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/InitializeEnigma.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/InitializeEnigma.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/PlugBoard.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/PlugBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/Reflector.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/Reflector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/Rotor.java" beforeDir="false" afterPath="$PROJECT_DIR$/engine/src/main/java/enigmaEngine/interfaces/Rotor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/InitCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/CodeGeneratorModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/EncryptDecryptController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/EncryptDecryptController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineStateController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/exceptions/TaskCanceledException.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/historyAndStatistics/MachineCodeData.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/historyAndStatistics/MachineCodeData.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/historyAndStatistics/MachineHistoryAndStatistics.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/historyAndStatistics/MachineHistoryAndStatistics.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/impl/ModelMain.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/impl/models/ModelMain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/impl/Trie.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/impl/Trie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/impl/models/MachineStateConsole.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/impl/models/MachineStateModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/impl/models/Specifications.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/impl/models/Specifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/interfaces/Input.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/interfaces/Input.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/encryptDecrypt/encryptDecrypt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/encryptDecrypt/encryptDecrypt.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/producer/BlockingProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/producer/BlockingProducer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +175,8 @@
       <workItem from="1664400292540" duration="218000" />
       <workItem from="1664469575769" duration="39276000" />
       <workItem from="1664644022736" duration="9913000" />
-      <workItem from="1664661196425" duration="16637000" />
+      <workItem from="1664661196425" duration="16996000" />
+      <workItem from="1664678897310" duration="299000" />
     </task>
     <task id="LOCAL‎-00001" summary="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works">
       <created>1664399424005</created>
@@ -245,7 +192,21 @@
       <option name="project" value="LOCAL‎" />
       <updated>1664400502793</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL‎-00003" summary="brute force completed - added thread pool, producer blocking queue and different difficulty levels. Successfully tested with logger.">
+      <created>1664678231268</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL‎-00003" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1664678231268</updated>
+    </task>
+    <task id="LOCAL‎-00004" summary="pom file updated">
+      <created>1664678333124</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL‎-00004" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1664678333124</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,7 +237,9 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works" />
-    <option name="LAST_COMMIT_MESSAGE" value="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works" />
+    <MESSAGE value="brute force completed - added thread pool, producer blocking queue and different difficulty levels. Successfully tested with logger." />
+    <MESSAGE value="pom file updated" />
+    <option name="LAST_COMMIT_MESSAGE" value="pom file updated" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -287,16 +250,16 @@
           <option name="timeStamp" value="20" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/main/java/ui/Combinations.java</url>
-          <line>8</line>
-          <option name="timeStamp" value="34" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/main/java/ui/Combinations.java</url>
-          <line>21</line>
-          <option name="timeStamp" value="35" />
+          <url>file://$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java</url>
+          <line>429</line>
+          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="Application">
+        <watch expression="allRotorsCombinations.get(idx)" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

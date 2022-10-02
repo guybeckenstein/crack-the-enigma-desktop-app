@@ -110,14 +110,15 @@ public class BlockingProducer extends AbstractProducer {
     }
 
     private void impossibleDifficulty() throws InterruptedException {
-        List<List<Integer>> allRotorsPermutations = Permutations.getAllPermutationsIterative(initialMachineCode.getRotorsIDInorder(), new ArrayList<>());
         List<List<Integer>> allRotorsCombinations = Combinations.generateAllCombinations(totalRotors, initialMachineCode.getRotorsIDInorder().size());
-
         int allRotorsCombinationsSize = allRotorsCombinations.size();
         int allRotorsPermutationsSize = Difficulty.factorial(initialMachineCode.getRotorsIDInorder().size());
         long limit = ((total / totalReflectors) / allRotorsPermutationsSize) / allRotorsCombinationsSize;
+
         for (int currentCombinationIndex = 0; currentCombinationIndex < allRotorsCombinationsSize; currentCombinationIndex++) {
             updateRotorsCombination(allRotorsCombinations, currentCombinationIndex);
+
+            List<List<Integer>> allRotorsPermutations = Permutations.getAllPermutationsIterative(initialMachineCode.getRotorsIDInorder(), new ArrayList<>());
             for (int rotorsCurrentPermutationIndex = 0; rotorsCurrentPermutationIndex < allRotorsPermutationsSize; rotorsCurrentPermutationIndex++) {
                 updateRotorsPermutation(allRotorsPermutations, rotorsCurrentPermutationIndex); //, logger);
                 for (long incrementSelectedReflector = 0; incrementSelectedReflector < totalReflectors; incrementSelectedReflector++) {
