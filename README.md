@@ -9,6 +9,8 @@ The project includes console, desktop and client-server architecture. As mention
 
 Familiarity with Spring.
 
+
+
 Result:
 
 ![screen1](https://user-images.githubusercontent.com/82370205/189650900-18271cf1-6b25-440c-910a-895b138eee84.jpg)
