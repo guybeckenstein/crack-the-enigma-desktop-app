@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class HeaderController {
     private AppController mainController;
     @FXML private HBox headerHBox;
-    private String currXMLFilePath = "";
+    private String currXMLFilePath;
 
     // private final IntegerProperty chosenButton = new SimpleIntegerProperty();
     @FXML private TextField xmlFilePathTextField;
@@ -37,9 +37,12 @@ public class HeaderController {
 
     @FXML private Button bruteForceButton;
 
+    private File recordsDir;
+
 
     public HeaderController() {
-
+        currXMLFilePath = "";
+        recordsDir = null;
     }
 
     public void setMainController(AppController mainController) {
@@ -53,7 +56,7 @@ public class HeaderController {
         styleChoiceBox.getItems().addAll("Style #1", "Style #2", "Style #3");
         styleChoiceBox.setValue("Style #1");
         styleChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> mainController.updateStylesheet(number2));
-        
+
         animationChoiceBox.getItems().addAll("No Animation", "Animation");
         animationChoiceBox.setValue("No Animation");
         animationChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> mainController.updateAnimation(number2));
@@ -89,6 +92,10 @@ public class HeaderController {
             FileChooser fc = new FileChooser();
             fc.setTitle("Pick your XML file for Ex2.");
             fc.getExtensionFilters().add(new FileChooser.ExtensionFilter("XML Files", "*.xml"));
+
+            if (!currXMLFilePath.equals("")) {
+                updateFileChooserDirectory(fc);
+            }
 
             File newXMLFile = fc.showOpenDialog(null);
             String filePath = newXMLFile.getAbsolutePath();
@@ -129,6 +136,34 @@ public class HeaderController {
             currXMLFilePath = "";
         }
     }
+
+    private void updateFileChooserDirectory(FileChooser fc) {
+        String newFilePath = "";
+        // Fix string to java-wise string
+        for (Character ch : currXMLFilePath.toCharArray()) {
+            if (ch.equals('\\')) {
+                newFilePath = newFilePath + "/";
+            } else {
+                newFilePath = newFilePath + ch;
+            }
+        }
+
+        String[] parts = newFilePath.split("/");
+        newFilePath = "";
+        for (int i = 0; i < parts.length - 1; i++) {
+            if (i > 0) {
+                newFilePath = newFilePath + "/";
+            }
+            newFilePath = newFilePath + parts[i];
+        }
+
+        recordsDir = new File(newFilePath);
+        if (!recordsDir.exists()) {
+            recordsDir.mkdirs();
+        }
+        fc.setInitialDirectory(recordsDir);
+    }
+
     public void updateLabelTextsToEmpty() {
         loadXMLErrorLabel.setText("");
     }
