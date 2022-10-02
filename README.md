@@ -1,7 +1,11 @@
 # EnigmaMachine
-Enigma machine implementation, based on Apache Maven tool, including automatic decipher process (using brute force). The machine is a generic one, not limited to a certain scale. The process involved working with multiple threads, files, collections and other OOP concepts and principles (e.g. interfaces, encapsulation, SOLID). The project includes console, desktop and client-server architecture. Familiarity with Spring.
+Enigma machine Desktop application implementation, based on Apache Maven tool, including automatic decipher process (using brute force). 
+The machine is a generic one, not limited to a certain scale.
+The process involved working with multiple threads, files, collections and other OOP concepts and principles (e.g. interfaces, encapsulation, SOLID). 
+The project includes console, desktop and client-server architecture. As mentioned, this repository is has desktop architecture.
+Familiarity with Spring.
 
-This is a partial outcome of a project which has three parts of seperate excercises. This is an image of the current status at excercise 2, an unfinished result:
+Result:
 
 ![screen1](https://user-images.githubusercontent.com/82370205/189650900-18271cf1-6b25-440c-910a-895b138eee84.jpg)
 
