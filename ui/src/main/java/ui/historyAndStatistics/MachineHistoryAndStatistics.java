@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Spliterator;
 import java.util.function.Consumer;
 
 public class MachineHistoryAndStatistics implements Iterable<MachineCodeData>, Serializable {
@@ -38,11 +37,6 @@ public class MachineHistoryAndStatistics implements Iterable<MachineCodeData>, S
     @Override
     public void forEach(Consumer<? super MachineCodeData> action) {
         Iterable.super.forEach(action);
-    }
-
-    @Override
-    public Spliterator<MachineCodeData> spliterator() {
-        return Iterable.super.spliterator();
     }
 
     @Override

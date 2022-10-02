@@ -3,12 +3,12 @@ package ui.impl.models;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class MachineStateConsole {
+public class MachineStateModel {
     // Screens 1 + 2
     private final StringProperty firstMachineState;
     private final StringProperty currentMachineState;
 
-    public MachineStateConsole() {
+    public MachineStateModel() {
         this.firstMachineState = new SimpleStringProperty(this, "firstMachineState", "NaN");
         this.currentMachineState = new SimpleStringProperty(this, "currentMachineState", "NaN");
     }
@@ -23,10 +23,6 @@ public class MachineStateConsole {
 
     public void setFirstMachineState(String firstMachineState) {
         this.firstMachineState.set(firstMachineState);
-    }
-
-    public String getCurrentMachineState() {
-        return currentMachineState.get();
     }
 
     public StringProperty currentMachineStateProperty() {

@@ -1,6 +1,6 @@
 package ui.controllers;
 
-import ui.impl.models.MachineStateConsole;
+import ui.impl.models.MachineStateModel;
 import ui.impl.models.Specifications;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
@@ -14,15 +14,17 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Objects;
 
+// First screen
 public class MachineDetailsController {
     // Main component
     private AppController mainController;
     @FXML private MachineStateController firstMachineStateComponentController;
     @FXML private MachineStateController currentMachineStateComponentController;
     // Models
-    private Specifications specs;
-    private MachineStateConsole machineStatesConsole;
+    private final Specifications specs;
+    private final MachineStateModel machineStatesConsole;
     // Machine configuration status
     @FXML private Label maxRotorsInMachineLabel;
     @FXML private Label currentUsedMachineRotorsLabel;
@@ -47,7 +49,7 @@ public class MachineDetailsController {
 
     public MachineDetailsController() {
         specs = new Specifications();
-        machineStatesConsole = new MachineStateConsole();
+        machineStatesConsole = new MachineStateModel();
     }
 
     @FXML
@@ -102,7 +104,7 @@ public class MachineDetailsController {
     private boolean initializeEnigmaCode(boolean isManual) {
         String rotors, startingPositions, plugBoardPairs, reflectorID;
         if (isManual) {
-            // Get input from user and generate it to the machine
+            // Get input from user and generateAllCombinations it to the machine
             if (isValidConfigurationTextFields()) {
                 rotors = rotorsAndOrderTextField.getText();
                 startingPositions = rotorsStartingPosTextField.getText();
@@ -112,7 +114,7 @@ public class MachineDetailsController {
                 startingPositions = new StringBuilder(startingPositions).reverse().toString();
 
                 try {
-                    AppController.getConsoleApp().initializeEnigmaCodeManually(rotors, startingPositions, plugBoardPairs, reflectorID);
+                    AppController.getModelMain().initializeEnigmaCodeManually(rotors, startingPositions, plugBoardPairs, reflectorID);
                     setCodeLabel.setText("Manually initialized configuration code.");
                 } catch (NumberFormatException e) {
                     setCodeLabel.setText("Non-numeric value was inserted in 'Rotors And Order'.");
@@ -128,23 +130,22 @@ public class MachineDetailsController {
             }
         }
         else {
-            AppController.getConsoleApp().initializeEnigmaCodeAutomatically();
+            AppController.getModelMain().initializeEnigmaCodeAutomatically();
             setCodeLabel.setText("Automatically initialized configuration code.");
         }
-        String machineStateConsoleString = AppController.getConsoleApp().getMachineHistoryStates().getCurrentMachineCode();
-        updateMachineStatesAndDisability(machineStateConsoleString, false);
+        updateMachineStatesAndDisability(AppController.getModelMain().getMachineHistoryStates().getCurrentMachineCode(), false);
 
-        specs.setCurrentRotorsInMachine(Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getSelectedRotors().size()));
-        specs.setCurrentReflectorInMachine(AppController.getConsoleApp().getEngine().getEngineDTO().getSelectedReflector());
-        specs.setMessagesProcessed(Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getMessagesSentCounter()));
+        specs.setCurrentRotorsInMachine(Integer.toString(AppController.getModelMain().getEngine().getEngineDTO().getSelectedRotors().size()));
+        specs.setCurrentReflectorInMachine(AppController.getModelMain().getEngine().getEngineDTO().getSelectedReflector());
+        specs.setMessagesProcessed(Integer.toString(AppController.getModelMain().getEngine().getEngineDTO().getMessagesSentCounter()));
         return true;
     }
 
     public void updateMachineStatesAndDisability(String machineStateConsoleString, boolean bool) {
         mainController.updateScreensDisability(bool);
         mainController.initializeMachineStates(machineStateConsoleString);
-        firstMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
-        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
+        firstMachineStateComponentController.setInitializedControllerComponents(AppController.getModelMain().getEngine().getEngineDTO());
+        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getModelMain().getEngine().getEngineDTO());
     }
 
     private boolean isValidConfigurationTextFields() {
@@ -191,14 +192,14 @@ public class MachineDetailsController {
     }
 
     public void updateMachineStateAndStatus(String currentMachineState) {
-        specs.setMessagesProcessed(Integer.toString(AppController.getConsoleApp().getMessageCounter()));
+        specs.setMessagesProcessed(Integer.toString(AppController.getModelMain().getMessageCounter()));
         machineStatesConsole.setCurrentMachineState(currentMachineState);
-        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
+        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getModelMain().getEngine().getEngineDTO());
     }
 
     public void resetMachineStateAndStatus() {
         machineStatesConsole.setCurrentMachineState(machineStatesConsole.getFirstMachineState());
-        currentMachineStateComponentController.resetMachineStateComponentComponent(AppController.getConsoleApp().getEngine().getEngineDTO());
+        currentMachineStateComponentController.resetMachineStateComponentComponent(AppController.getModelMain().getEngine().getEngineDTO());
     }
 
     class ClearStatusListener implements ChangeListener<String> {
@@ -217,11 +218,11 @@ public class MachineDetailsController {
         currentMachineStateComponentController.updateStylesheet(num);
         mainScrollPane.getStylesheets().remove(0);
         if (num.equals(0)) {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("machineDetails/machineDetailsStyleOne.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineDetails/machineDetailsStyleOne.css")).toString());
         } else if (num.equals(1)) {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("machineDetails/machineDetailsStyleTwo.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineDetails/machineDetailsStyleTwo.css")).toString());
         } else {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("machineDetails/machineDetailsStyleThree.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineDetails/machineDetailsStyleThree.css")).toString());
         }
     }
 }

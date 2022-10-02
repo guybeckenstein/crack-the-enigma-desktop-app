@@ -1,18 +1,13 @@
 package ui.controllers;
 
-import automateDecryption.Difficulty;
+import ui.decryptionManager.Difficulty;
 import enigmaEngine.interfaces.EnigmaEngine;
 import javafx.beans.binding.Bindings;
-import javafx.beans.property.BooleanProperty;
 import javafx.concurrent.Task;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.GridPane;
 import ui.impl.Trie;
-import ui.impl.models.MachineStateConsole;
-import dto.EngineDTO;
+import ui.impl.models.MachineStateModel;
 import enigmaEngine.exceptions.InvalidCharactersException;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -23,6 +18,7 @@ import javafx.scene.layout.VBox;
 import java.util.*;
 import java.util.stream.Collectors;
 
+// Third screen
 public class BruteForceController {
     // Buttons component
     @FXML VBox dmButtonsVBox;
@@ -32,7 +28,7 @@ public class BruteForceController {
     // Main component
     private AppController mainController;
     // Models
-    private MachineStateConsole machineStatesConsole;
+    private final MachineStateModel machineStatesConsole;
     //
     @FXML private VBox bruteForceVBox;
     // Machine states
@@ -57,32 +53,25 @@ public class BruteForceController {
     @FXML private Label difficultyLevelLabel;
     @FXML private Label missionSizeLabel;
     @FXML private TextField missionSizeInput;
-    @FXML private Button setDMProperties;
     @FXML private Label totalMissionsLabel;
-    private int dmMissionSize;
     private Difficulty dmDifficultyLevel;
     // DM Output
     @FXML private TextArea finalCandidatesTextArea;
-    StringProperty finalCandidates;
-    boolean existingInput = false;
     @FXML ProgressBar progressBar;
     @FXML Label progressPercentLabel;
     @FXML Label averageTime;
     private EnigmaEngine taskCurrentConfiguration;
     private ui.decryptionManager.DecryptionManagerTask dmTask;
-    private BooleanProperty dmResult;
     private String timeElapsed = "";
     @FXML private ScrollPane mainScrollPane;
 
 
     public BruteForceController() {
-        finalCandidates = new SimpleStringProperty("");
-        machineStatesConsole = new MachineStateConsole(); // Model
+        machineStatesConsole = new MachineStateModel(); // Model
     }
 
     @FXML
     private void initialize() {
-        // finalCandidatesTextArea.textProperty().bindBidirectional(finalCandidates);
         // Only for binding the ENTER key to the input text field
         enterCurrentKeyboardInputButton.setOnAction(this::enterCurrentKeyboardInputButtonActionListener);
         keyboardInputVBox.addEventHandler(KeyEvent.KEY_PRESSED, ev -> {
@@ -97,7 +86,7 @@ public class BruteForceController {
         setBruteForceDisability(true);
         agentsSliderInput.valueProperty().addListener((observable, oldValue, newValue) -> {
             totalAgentsLabel.setText(Integer.toString((int)agentsSliderInput.getValue()));
-            if (!missionSizeLabel.equals("")) {
+            if (!missionSizeLabel.getText().equals("")) {
                 updateMissionsLabel();
             }
         });
@@ -107,25 +96,18 @@ public class BruteForceController {
         difficultyLevelInput.setValue("EASY");
         dmDifficultyLevel = Difficulty.EASY;
         difficultyLevelInput.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            switch (newValue.intValue()) {
-                case 0:
-                    dmDifficultyLevel = Difficulty.EASY;
-                    updateMissionsLabel();
-                    break;
-                case 1:
-                    dmDifficultyLevel = Difficulty.MEDIUM;
-                    updateMissionsLabel();
-                    break;
-                case 2:
-                    dmDifficultyLevel = Difficulty.HARD;
-                    updateMissionsLabel();
-                    break;
-                case 3:
-                    dmDifficultyLevel = Difficulty.IMPOSSIBLE;
-                    updateMissionsLabel();
-                    break;
+            if (newValue.intValue() == 0) {
+                dmDifficultyLevel = Difficulty.EASY;
+            } else if (newValue.intValue() == 1) {
+                dmDifficultyLevel = Difficulty.MEDIUM;
+            } else if (newValue.intValue() == 2) {
+                dmDifficultyLevel = Difficulty.HARD;
+            } else if (newValue.intValue() == 3) {
+                dmDifficultyLevel = Difficulty.IMPOSSIBLE;
+            } else {
+                new Alert(Alert.AlertType.ERROR, "Invalid difficulty level");
             }
-
+            updateMissionsLabel();
             String difficultyLevel = dmDifficultyLevel.toString().toLowerCase();
             difficultyLevelLabel.setText(difficultyLevel.substring(0, 1).toUpperCase() + difficultyLevel.substring(1));
         });
@@ -169,75 +151,30 @@ public class BruteForceController {
         });
         firstMachineStateLabel.textProperty().bind(machineStatesConsole.firstMachineStateProperty());
         currentMachineStateLabel.textProperty().bind(machineStatesConsole.currentMachineStateProperty());
-
-    }
-
-    @FXML
-    public void exit() {
-
-        if (dmTask != null) {
-            dmTask.cancel();
-        }
     }
 
     private void updateMissionsLabel() {
         long missionSize;
         try {
             missionSize = Long.parseLong(missionSizeInput.getText());
-        } catch (NumberFormatException e) {
+            if (missionSize <= 0) {
+                throw new ArithmeticException();
+            }
+        } catch (NumberFormatException | ArithmeticException e) {
             totalMissionsLabel.setText("NaN");
             missionSizeLabel.setText("Invalid input");
             return;
         }
+        EnigmaEngine enigmaEngine = AppController.getModelMain().getEngine();
         totalMissionsLabel.setText(Long.toString(
-                translateDifficultyLevelToMissions()
+                Difficulty.translateDifficultyLevelToMissions(dmDifficultyLevel, enigmaEngine.getEngineDTO(),
+                        AppController.getModelMain().getXmlDTO().getReflectorsFromXML().size(), enigmaEngine.getABCSize())
                         / (missionSize
                         * (long)agentsSliderInput.getValue())));
     }
 
-    private Long translateDifficultyLevelToMissions() {
-        EngineDTO engineDTO = AppController.getConsoleApp().getEngine().getEngineDTO();
-        int ABCSize = AppController.getConsoleApp().getEngine().getABCSize();
-        switch (difficultyLevelInput.getValue().toUpperCase()) {
-            case "EASY":
-                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size());
-            case "MEDIUM":
-                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors();
-            case "HARD":
-                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors() * factorial(engineDTO.getSelectedRotors().size());
-            case "IMPOSSIBLE":
-                return (long) Math.pow(ABCSize, engineDTO.getSelectedRotors().size()) * engineDTO.getTotalReflectors()
-                        * factorial(engineDTO.getSelectedRotors().size()
-                        * binomial(engineDTO.getSelectedRotors().size(), engineDTO.getTotalNumberOfRotors()));
-            default:
-                return (long)0;
-        }
-    }
-
-    private long factorial(int size) {
-        long result = 1;
-        for (int i = 1; i <= size; i++) {
-            result *= i;
-        }
-        return result;
-    }
-
-    private int binomial(int n, int k)
-    {
-
-        // Base Cases
-        if (k > n)
-            return 0;
-        if (k == 0 || k == n)
-            return 1;
-
-        // Recur
-        return binomial(n - 1, k - 1)
-                + binomial(n - 1, k);
-    }
-
     @FXML
-    void StartResumeDMActionListener(ActionEvent actionEvent) {
+    void StartResumeDMActionListener() {
         toggleTaskButtons(true);
 
         if (startResumeDM.getText().contains("Resume")) {
@@ -248,16 +185,9 @@ public class BruteForceController {
         } else if (startResumeDM.getText().contains("Start")) {
             dmTask = new ui.decryptionManager.DecryptionManagerTask(
                     enigmaOutputTextField.getText(), Long.parseLong(totalMissionsLabel.getText()),
-                    Integer.parseInt(totalAgentsLabel.getText()), this,
-                    () -> {
-                        Alert alert = new Alert(Alert.AlertType.INFORMATION, "This took " + timeElapsed + " seconds.");
-                        alert.setTitle("Done!");
-                        alert.setHeaderText("Done!");
-                        alert.showAndWait();
-                        dmTask.cancel();
-                        dmTask = null;
-                        startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
-            });
+                    Integer.parseInt(totalAgentsLabel.getText()), Integer.parseInt(missionSizeLabel.getText()),
+                    dmDifficultyLevel, AppController.getModelMain().getXmlDTO().getReflectorsFromXML().size(),
+                    AppController.getModelMain().getXmlDTO().getRotorsFromXML().size(), this, () -> dmOnFinished());
 
             Thread th = new Thread(dmTask);
             th.start();
@@ -296,29 +226,30 @@ public class BruteForceController {
     }
 
     @FXML
-    void PauseDMActionListener(ActionEvent actionEvent) {
+    void PauseDMActionListener() {
         dmTask.setPaused(true);
         startResumeDM.setDisable(false);
         pauseDM.setDisable(true);
     }
 
     @FXML
-    void StopDMActionListener(ActionEvent actionEvent) {
+    void StopDMActionListener() {
         startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
         toggleTaskButtons(false);
         if (dmTask != null) {
-            dmTask.cancel();
+            dmOnFinished();
         }
 
     }
 
     @FXML
-    void setDMPropertiesActionListener(ActionEvent event) {
+    void setDMPropertiesActionListener() {
         try {
             if (missionSizeLabel.getText().equals("NaN") || missionSizeLabel.getText().equals("Invalid input")) {
-                throw new InputMismatchException("There is no valid mission size input");
+                throw new InputMismatchException("There is no valid mission size input.");
+            } else if (missionSizeLabel.getText().equals("0")) {
+                throw new InputMismatchException("Each agent must perform at least 1 mission (task).");
             }
-            mainController.setDMProperties(Integer.parseInt(missionSizeLabel.getText()), Integer.parseInt(missionSizeLabel.getText()), dmDifficultyLevel);
             dmButtonsVBox.setDisable(false);
             startResumeDM.setDisable(false);
             pauseDM.setDisable(true);
@@ -335,13 +266,35 @@ public class BruteForceController {
     }
 
     public void setBruteForceDisability(boolean bool) {
+        // enable brute force top screen
         bruteForceVBox.setDisable(bool);
+        // disable or remove brute force history
+        if (dmTask != null) {
+            dmTask.cancel();
+            unbindTaskFromUIComponents("0", false);
+
+            decryptionManagerGridPane.setDisable(!bool);
+            dmButtonsVBox.setDisable(!bool);
+
+            updateDecryptionManagerDetails();
+        }
+
+    }
+
+    private void updateDecryptionManagerDetails() {
+        startResumeDM.setText(startResumeDM.getText().replace("Resume", "Start"));
+
+        progressBar.setProgress(0);
+        progressPercentLabel.setText("0 %");
+        averageTime.setText("0.0000");
+        finalCandidatesTextArea.setText("");
+        timeElapsed = "0";
     }
 
     public void updateAgentsMaxSizeAndDictionary(int amountAgents) {
         agentsSliderInput.setMax(amountAgents);
 
-        List<String> allWords = mainController.getDictionary().stream().map((word) -> word.trim()) // Sorted dictionary list
+        List<String> allWords = mainController.getDictionary().stream().map(String::trim) // Sorted dictionary list
                 .sorted().collect(Collectors.toList());
         searchDictionaryWordsListView.getItems().addAll(allWords); // Sorted dictionary list view
 
@@ -353,24 +306,38 @@ public class BruteForceController {
     @FXML
     void enterCurrentKeyboardInputButtonActionListener(ActionEvent event) {
         try {
-            String messageInput = inputToEncryptDecryptInput.getText().toUpperCase(), messageOutput;
+            String messageInput = inputToEncryptDecryptInput.getText().toUpperCase().trim();
             if (messageInput.equals("")) {
                 throw new InputMismatchException("No encryption message was written.");
             }
+            invalidMessageInput(messageInput);
             if (messageInput.charAt(messageInput.length() - 1) == ' ') {
                 messageInput = messageInput.substring(0, messageInput.length() - 1);
             }
-            messageOutput = AppController.getConsoleApp().getMessageAndProcessIt(messageInput, true);
+            String messageOutput = AppController.getModelMain().getMessageAndProcessIt(messageInput, true);
 
             new Alert(Alert.AlertType.CONFIRMATION, "Processed message: " + messageInput + " -> " + messageOutput).show();
             enigmaOutputTextField.setText(messageOutput);
-            mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineStateAsString());
+            mainController.updateScreens(AppController.getModelMain().getCurrentMachineStateAsString());
             decryptionManagerGridPane.setDisable(false);
             mainController.updateLabelTextsToEmpty(this);
-            taskCurrentConfiguration = AppController.getConsoleApp().getEngine().deepClone();
-            existingInput = true;
+            taskCurrentConfiguration = AppController.getModelMain().getEngine().deepClone();
         } catch (InvalidCharactersException | InputMismatchException e) {
             new Alert(Alert.AlertType.ERROR, e.getLocalizedMessage()).show();
+        }
+    }
+
+    private void invalidMessageInput(String messageInput) {
+        Set<String> dictionaryWords = AppController.getModelMain().getEngine().getWordsDictionary().getWords();
+        new ArrayList<>(Arrays.asList(AppController.getModelMain().getXmlDTO().getExcludedCharacters().split(""))).forEach((ch) -> {
+            if (messageInput.contains(ch)) {throw new InputMismatchException("The encryption message \" " + messageInput
+                        + " \" contains at least one dictionary's illegal characters: \" "
+                        + AppController.getModelMain().getXmlDTO().getExcludedCharacters() + " \"");
+            }});
+        for (String splittedStr : messageInput.split(" ")) {
+            if (!dictionaryWords.contains(splittedStr)) {
+                throw new InputMismatchException("The encryption message must contain only dictionary words.");
+            }
         }
     }
 
@@ -385,7 +352,7 @@ public class BruteForceController {
 
     @FXML
     void resetMachineStateButtonActionListener() {
-        AppController.getConsoleApp().resetMachine();
+        AppController.getModelMain().resetMachine();
         mainController.resetScreens(true, null);
     }
 
@@ -403,7 +370,6 @@ public class BruteForceController {
 
     public void updateLabelTextsToEmpty() {
         inputToEncryptDecryptInput.setText("");
-        finalCandidates.setValue("");
         averageTime.setText("");
     }
 
@@ -411,11 +377,11 @@ public class BruteForceController {
     public void updateStylesheet(Number num) {
         mainScrollPane.getStylesheets().remove(0);
         if (num.equals(0)) {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("bruteForce/bruteForceStyleOne.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("bruteForce/bruteForceStyleOne.css")).toString());
         } else if (num.equals(1)) {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("bruteForce/bruteForceStyleTwo.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("bruteForce/bruteForceStyleTwo.css")).toString());
         } else {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("bruteForce/bruteForceStyleThree.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("bruteForce/bruteForceStyleThree.css")).toString());
         }
     }
 
@@ -438,25 +404,34 @@ public class BruteForceController {
 
         // task cleanup upon finish
         aTask.valueProperty().addListener((observable, oldValue, newValue) -> onTaskFinished(Optional.ofNullable(onFinish)));
-        // aTask.valueProperty().addListener((observable, oldValue, newValue) -> finalCandidatesTextArea.setText(newValue));
-        // finalCandidatesTextArea.textProperty().bind(aTask.valueProperty());
     }
 
-    public void unbindTaskFromUIComponents(String timeElapsed) {
+    public void unbindTaskFromUIComponents(String timeElapsed, boolean bool) {
         progressBar.progressProperty().unbind();
         progressPercentLabel.textProperty().unbind();
         toggleTaskButtons(false);
-        this.timeElapsed = timeElapsed;
+        if (bool) {
+            this.timeElapsed = timeElapsed;
+        }
     }
 
     public void onTaskFinished(Optional<Runnable> onFinish) {
-        // this.finalCandidatesTextArea.textProperty().unbind();
-        this.progressBar.progressProperty().unbind();
-        this.progressPercentLabel.textProperty().unbind();
+        progressBar.progressProperty().unbind();
+        progressPercentLabel.textProperty().unbind();
         onFinish.ifPresent(Runnable::run);
     }
 
-    public int getTotalAgentsLabel() {
-        return Integer.parseInt(totalAgentsLabel.getText());
+    private void dmOnFinished() {
+        timeElapsed = dmTask.getTimeElapsed();
+        dmTask.cancel();
+        dmTask = null;
+        unbindTaskFromUIComponents(timeElapsed, true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "This took " + timeElapsed + " seconds.");
+        alert.setTitle("Done!");
+        alert.setHeaderText("Done!");
+        alert.showAndWait();
+
+        updateDecryptionManagerDetails();
     }
 }

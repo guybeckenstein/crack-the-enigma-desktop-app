@@ -118,8 +118,8 @@
                         </TextField>
                         <HBox alignment="CENTER" prefHeight="60.0" prefWidth="200.0" spacing="10.0">
                            <children>
-                              <Button fx:id="clearInputButton" mnemonicParsing="false" onAction="#clearInputButtonActionListener" prefHeight="50.0" prefWidth="120.0" text="Clear Input" wrapText="true" />
-                              <Button fx:id="mouseEndOfInputButton" mnemonicParsing="false" onAction="#mouseEndOfInputButtonActionListener" prefHeight="50.0" prefWidth="120.0" text="End of Input" wrapText="true" />
+                              <Button mnemonicParsing="false" onAction="#clearInputButtonActionListener" prefHeight="50.0" prefWidth="120.0" text="Clear Input" wrapText="true" />
+                              <Button mnemonicParsing="false" onAction="#mouseEndOfInputButtonActionListener" prefHeight="50.0" prefWidth="120.0" text="End of Input" wrapText="true" />
                            </children>
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -139,7 +139,7 @@
          <center>
             <VBox id="statisticsAndHistoryTextFlow" BorderPane.alignment="CENTER_RIGHT">
                <children>
-                  <Label id="header" fx:id="machineEntireStatisticsAndHistoryLabel" text="Machine Entire Statistics And History">
+                  <Label id="header" text="Machine Entire Statistics And History">
                      <VBox.margin>
                         <Insets bottom="10.0" />
                      </VBox.margin>

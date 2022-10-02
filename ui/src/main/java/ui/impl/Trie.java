@@ -8,7 +8,7 @@ import java.util.*;
 public class Trie implements TrieInterface
 {
     private boolean isLeaf;
-    private Map<Character, Trie> children;
+    private final Map<Character, Trie> children;
     private List<String> allStrings;
 
     // Constructor

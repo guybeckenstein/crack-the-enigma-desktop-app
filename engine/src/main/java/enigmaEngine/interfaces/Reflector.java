@@ -9,7 +9,7 @@ public interface Reflector extends Serializable {
         II,
         III,
         IV,
-        V;
+        V
     }
     int findPairByIndex(int idx); // returns ReflectorDictionary[index], returns pairIndex
     ReflectorID getReflectorID();

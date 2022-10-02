@@ -10,9 +10,9 @@ import java.util.stream.Collectors;
 // All it's functions are now static
 // It has no constructors
 // Another static class we use in Java is NIO.Files
-final public class InitCode {
+final public class CodeGeneratorModel {
 
-    private InitCode() {
+    private CodeGeneratorModel() {
 
     }
     public static ArrayList<Integer> createSelectedRotorsList(String selectedRotors) throws NumberFormatException {

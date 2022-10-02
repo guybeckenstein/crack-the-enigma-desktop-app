@@ -1,8 +1,8 @@
 package enigmaEngine.impl;
 
 import dto.EngineDTO;
-import enigmaEngine.MachineCode;
-import enigmaEngine.WordsDictionary;
+import dto.ConfigurationDTO;
+import decryptionManager.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -15,7 +15,6 @@ import javafx.util.Pair;
 
 import java.io.*;
 import java.util.*;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
@@ -28,12 +27,9 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     private Reflector selectedReflector;
     private List<Character> startingCharacters;
     private int messagesSentCounter;
-    private List<Rotor> selectedRotorsListRightToLeft;
-    private List<Rotor> selectedRotorsListLeftToRight;
-
+    private final List<Rotor> selectedRotorsListRightToLeft;
+    private final List<Rotor> selectedRotorsListLeftToRight;
     private WordsDictionary wordsDictionary;
-
-    private int agentsNumber;
 
 
     public EnigmaEngineImpl(HashMap<Integer, Rotor> rotors, HashMap<Reflector.ReflectorID, Reflector> reflectors, PlugBoard plugBoard, String abc) {
@@ -60,16 +56,6 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public int getABCSize() {
         return this.machineABC.length();
-    }
-
-    @Override
-    public String getABC() {
-        return this.machineABC;
-    }
-
-    @Override
-    public List<Reflector.ReflectorID> getReflectors() {
-        return new ArrayList<>(this.reflectors.keySet());
     }
 
     @Override
@@ -159,17 +145,16 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public EngineDTO getEngineDTO() {
         return new EngineDTO(rotors.size(),
-                reflectors.size(),
                 plugBoard.getPairs(),
                 selectedReflector == null ? "" : selectedReflector.getReflectorID().toString(),
                 charsAtWindows(),
                 getSelectedRotorsAndNotchesDistances(),
-                messagesSentCounter); // TODO: see if we need to change this to 0 instead
+                messagesSentCounter);
     }
 
     @Override
-    public MachineCode getMachineCode() {
-        return new MachineCode(selectedRotors, startingCharacters, selectedReflector.getReflectorID(), plugBoard.getPairList(), machineABC);
+    public ConfigurationDTO getMachineCode() {
+        return new ConfigurationDTO(selectedRotors, startingCharacters, selectedReflector.getReflectorID(), plugBoard.getPairList(), machineABC);
     }
 
     private List<Character> charsAtWindows() {
@@ -207,37 +192,26 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     }
 
     @Override
-    public void setEngineConfiguration(MachineCode machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException {
-        setSelectedRotors(machineCode.getRotorsIDInorder(), machineCode.getStartingPositions());
-        setSelectedReflector(machineCode.getSelectedReflectorID());
-        setPlugBoard(machineCode.getPlugBoard());
+    public void setEngineConfiguration(ConfigurationDTO configurationDTO) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException {
+        setSelectedRotors(configurationDTO.getRotorsIDInorder(), configurationDTO.getStartingPositions());
+        setSelectedReflector(configurationDTO.getSelectedReflectorID());
+        setPlugBoard(configurationDTO.getPlugBoard());
     }
 
+    @Override
     public EnigmaEngine deepClone() { // Serializing
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
         try {
-            ObjectOutputStream out = new ObjectOutputStream(bos);
-            out.writeObject(this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-        ByteArrayInputStream bis = new ByteArrayInputStream(bos.toByteArray());
-        ObjectInputStream in = null;
-        try {
-            in = new ObjectInputStream(bis);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        EnigmaEngine clone = null;
-        try {
-            clone = (EnigmaEngine) in.readObject();
+            EnigmaEngine clone;
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            objectOutputStream.writeObject(this);
+            ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(byteArrayOutputStream.toByteArray());
+            ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
+            clone = (EnigmaEngine) objectInputStream.readObject();
+            return clone;
         } catch (IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-        return clone;
     }
 
     private List<Integer> createRandomSelectedRotors(int numberOfSelectedRotors) {
@@ -335,13 +309,5 @@ public class EnigmaEngineImpl implements EnigmaEngine, Serializable {
     @Override
     public void setWordsDictionary(WordsDictionary wordsDictionary) {
         this.wordsDictionary = wordsDictionary;
-    }
-
-    public int getAgentsNumber() {
-        return agentsNumber;
-    }
-
-    public void setAgentsNumber(int agentsNumber) {
-        this.agentsNumber = agentsNumber;
     }
 }

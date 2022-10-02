@@ -1,7 +1,7 @@
 package enigmaEngine.interfaces;
 
-import enigmaEngine.MachineCode;
-import enigmaEngine.WordsDictionary;
+import dto.ConfigurationDTO;
+import decryptionManager.WordsDictionary;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -18,8 +18,6 @@ public interface EnigmaEngine extends Serializable {
 
     int getABCSize();
 
-    String getABC();
-
     char activate(char input);
 
     String processMessage(String input) throws InvalidCharactersException;
@@ -27,8 +25,6 @@ public interface EnigmaEngine extends Serializable {
     void setSelectedRotors(List<Integer> rotorsIDInorder, List<Character> startingPositions) throws InvalidCharactersException, InvalidRotorException;
 
     void setStartingCharacters(List<Character> startingCharacters) throws InvalidCharactersException;
-
-    List<Reflector.ReflectorID> getReflectors();
 
     void setSelectedReflector(Reflector.ReflectorID selectedReflectorID) throws InvalidReflectorException;
 
@@ -38,11 +34,11 @@ public interface EnigmaEngine extends Serializable {
 
     EngineDTO getEngineDTO();
 
-    MachineCode getMachineCode();
+    ConfigurationDTO getMachineCode();
 
     void randomSelectedComponents();
 
-    void setEngineConfiguration(MachineCode machineCode) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
+    void setEngineConfiguration(ConfigurationDTO configurationDTO) throws InvalidCharactersException, InvalidRotorException, InvalidReflectorException, InvalidPlugBoardException;
 
     WordsDictionary getWordsDictionary();
     void setWordsDictionary(WordsDictionary wordsDictionary);

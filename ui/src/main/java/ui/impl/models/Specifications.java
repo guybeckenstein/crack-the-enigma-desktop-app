@@ -19,40 +19,20 @@ public class Specifications {
         this.messagesProcessed = new SimpleStringProperty(this, "messagesProcessed", "NaN");
     }
 
-    public String getRotorsAmountInMachineXML() {
-        return rotorsAmountInMachineXML.get();
-    }
-
     public void setRotorsAmountInMachineXML(String rotorsAmountInMachineXML) {
         this.rotorsAmountInMachineXML.set(rotorsAmountInMachineXML);
-    }
-
-    public String getCurrentRotorsInMachine() {
-        return currentRotorsInMachine.get();
     }
 
     public void setCurrentRotorsInMachine(String currentRotorsInMachine) {
         this.currentRotorsInMachine.set(currentRotorsInMachine);
     }
 
-    public String getReflectorsAmountInMachineXML() {
-        return reflectorsAmountInMachineXML.get();
-    }
-
     public void setReflectorsAmountInMachineXML(String reflectorsAmountInMachineXML) {
         this.reflectorsAmountInMachineXML.set(reflectorsAmountInMachineXML);
     }
 
-    public String getCurrentReflectorInMachine() {
-        return currentReflectorInMachine.get();
-    }
-
     public void setCurrentReflectorInMachine(String currentReflectorInMachine) {
         this.currentReflectorInMachine.set(currentReflectorInMachine);
-    }
-
-    public String getMessagesProcessed() {
-        return messagesProcessed.get();
     }
 
     public void setMessagesProcessed(String messagesProcessed) {

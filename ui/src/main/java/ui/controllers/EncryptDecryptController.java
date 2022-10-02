@@ -1,6 +1,6 @@
 package ui.controllers;
 
-import ui.impl.models.MachineStateConsole;
+import ui.impl.models.MachineStateModel;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import javafx.animation.*;
 import javafx.beans.value.ChangeListener;
@@ -21,14 +21,16 @@ import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Objects;
 
+// Second screen
 public class EncryptDecryptController {
     // Main component
     private AppController mainController;
     @FXML private MachineStateController firstMachineStateComponentController;
     @FXML private MachineStateController currentMachineStateComponentController;
     // Models
-    private MachineStateConsole machineStatesConsole = new MachineStateConsole();
+    private final MachineStateModel machineStateModel;
     //
     @FXML private BorderPane borderPaneContainer;
     // Machine states
@@ -43,28 +45,28 @@ public class EncryptDecryptController {
     // Mouse bonus
     @FXML private TextField mouseInputTextField; // Automatic input after each click
     @FXML private TextField mouseOutputTextField; // Automatic output after each click
-    @FXML private Button clearInputButton; // Resets mouse input option
-    @FXML private Button mouseEndOfInputButton; // Ends mouse input option
     @FXML private FlowPane mouseInputFlowPane; // Dynamic component of XML Enigma buttons (all ABC letters), for input (clickable button-nodes)
     @FXML private FlowPane mouseOutputFlowPane; // Dynamic component of XML Enigma buttons (all ABC letters), for output (non-clickable button-nodes)
     Button lastOutputButton = null;
 
     @FXML private ScrollPane mainScrollPane;
-    @FXML private Label machineEntireStatisticsAndHistoryLabel;
-
 
 
     boolean isAnimation = false;
-    private RotateTransition rotate = new RotateTransition(Duration.millis(500));
-    private ScaleTransition scale = new ScaleTransition(Duration.millis(500));
-    private FillTransition fill = new FillTransition(Duration.millis(500));
-    FadeTransition fade = new FadeTransition(Duration.millis(500), resetMachineStateButton);
-    private ParallelTransition pt = new ParallelTransition(rotate, scale);
-    private static int numOfClicks = 0;
+    private final RotateTransition rotateTransition;
+    private final ScaleTransition scaleTransition;
+    private final FadeTransition fadeTransition;
+    private final ParallelTransition parallelTransition;
+    private static int numOfClicks;
 
     public EncryptDecryptController() {
-        // Model
-        machineStatesConsole = new MachineStateConsole();
+        machineStateModel = new MachineStateModel(); // Model
+
+        rotateTransition = new RotateTransition(Duration.millis(500));
+        scaleTransition = new ScaleTransition(Duration.millis(500));
+        fadeTransition = new FadeTransition(Duration.millis(500), resetMachineStateButton);
+        parallelTransition = new ParallelTransition(rotateTransition, scaleTransition);
+        numOfClicks = 0;
     }
 
     @FXML
@@ -85,14 +87,14 @@ public class EncryptDecryptController {
             encryptionDecryptionInputButton.getStyleClass().add("chosen-button");
 
 
-            rotate.setCycleCount(1);
-            rotate.setInterpolator(Interpolator.LINEAR);
-            rotate.setByAngle(360);
-            rotate.setAxis(Rotate.X_AXIS);
-            scale.setByX(1.5f);
-            scale.setByY(1.5f);
-            scale.setCycleCount(4);
-            scale.setAutoReverse(true);
+            rotateTransition.setCycleCount(1);
+            rotateTransition.setInterpolator(Interpolator.LINEAR);
+            rotateTransition.setByAngle(360);
+            rotateTransition.setAxis(Rotate.X_AXIS);
+            scaleTransition.setByX(1.5f);
+            scaleTransition.setByY(1.5f);
+            scaleTransition.setCycleCount(4);
+            scaleTransition.setAutoReverse(true);
         }
     }
 
@@ -114,26 +116,26 @@ public class EncryptDecryptController {
     }
 
     private void produceProcessedMessage(String messageInput) throws InvalidCharactersException {
-        setCodeLabel.setText("Processed message: " + messageInput + " -> " + AppController.getConsoleApp().getMessageAndProcessIt(messageInput, true));
-        mainController.updateScreens(AppController.getConsoleApp().getCurrentMachineStateAsString());
+        setCodeLabel.setText("Processed message: " + messageInput + " -> " + AppController.getModelMain().getMessageAndProcessIt(messageInput, true));
+        mainController.updateScreens(AppController.getModelMain().getCurrentMachineStateAsString());
         mainController.updateLabelTextsToEmpty(this);
 
         if (isAnimation) {
-            fade.setNode(resetMachineStateButton);
+            fadeTransition.setNode(resetMachineStateButton);
             if (numOfClicks % 3 == 0) {
-                fade.setFromValue(1);
-                fade.setFromValue(0.5);
+                fadeTransition.setFromValue(1);
+                fadeTransition.setFromValue(0.5);
             }
             if (numOfClicks % 3 == 1) {
-                fade.setFromValue(0.5);
-                fade.setFromValue(0);
+                fadeTransition.setFromValue(0.5);
+                fadeTransition.setFromValue(0);
             }
             if (numOfClicks % 3 == 2) {
-                fade.setFromValue(0);
-                fade.setFromValue(1);
+                fadeTransition.setFromValue(0);
+                fadeTransition.setFromValue(1);
             }
             numOfClicks++;
-            fade.play();
+            fadeTransition.play();
         }
     }
 
@@ -161,11 +163,11 @@ public class EncryptDecryptController {
 
     public void initializeMachineStatesAndMouseInputKeyboard() {
         // Machine States
-        firstMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
-        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
+        firstMachineStateComponentController.setInitializedControllerComponents(AppController.getModelMain().getEngine().getEngineDTO());
+        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getModelMain().getEngine().getEngineDTO());
 
         // Enigma code input
-        currentMachineInitialStateLabel.setText(AppController.getConsoleApp().getMachineStatisticsAndHistory());
+        currentMachineInitialStateLabel.setText(AppController.getModelMain().getMachineStatisticsAndHistory());
         updateButtonsCSS();
         setCodeLabel.setText("");
 
@@ -177,18 +179,18 @@ public class EncryptDecryptController {
     }
 
     private void createDynamicInputKeyboardFromABC() {
-        List<Character> xmlABC = AppController.getConsoleApp().getXmlDTO().getABCFromXML();
+        List<Character> xmlABC = AppController.getModelMain().getXmlDTO().getABCFromXML();
         EventHandler<MouseEvent> mouseClickHandler = event -> {
             if (MouseButton.PRIMARY.equals(event.getButton()) || MouseButton.SECONDARY.equals(event.getButton())) {
                 mouseInputTextField.setText(mouseInputTextField.getText() + ((Button)event.getSource()).getText()); // Updates input text
                 try {
-                    String outputLetter = AppController.getConsoleApp().getMessageAndProcessIt(((Button)event.getSource()).getText(), false); // Creates output
+                    String outputLetter = AppController.getModelMain().getMessageAndProcessIt(((Button)event.getSource()).getText(), false); // Creates output
                     mouseOutputTextField.setText(mouseOutputTextField.getText() + outputLetter); // Updates output text
                     for (Node node : mouseOutputFlowPane.getChildren()) {
                         if (node instanceof Button) {
                             Button button = (Button)node;
                             if (button.getText().equalsIgnoreCase(outputLetter)) {
-                                rotate.setNode((Button)event.getSource());
+                                rotateTransition.setNode((Button)event.getSource());
                                 node.getStyleClass().add("pressed-keyboard-button-output");
                                 if (lastOutputButton != null) {
                                     lastOutputButton.getStyleClass().remove("pressed-keyboard-button-output");
@@ -196,11 +198,11 @@ public class EncryptDecryptController {
                                 lastOutputButton = button;
 
                                 if (isAnimation) {
-                                    scale.setNode(button);
+                                    scaleTransition.setNode(button);
 
-                                    pt.setCycleCount(1);
-                                    pt.setAutoReverse(true);
-                                    pt.play();
+                                    parallelTransition.setCycleCount(1);
+                                    parallelTransition.setAutoReverse(true);
+                                    parallelTransition.play();
                                 }
                             }
                         }
@@ -211,8 +213,8 @@ public class EncryptDecryptController {
             }
         };
         // Remove old keyboard buttons
-        for (int i = 0; i < mouseInputFlowPane.getChildren().size(); i++) {
-            mouseInputFlowPane.getChildren().remove(0);
+        if (mouseInputFlowPane.getChildren().size() > 0) {
+            mouseInputFlowPane.getChildren().subList(0, mouseInputFlowPane.getChildren().size()).clear();
         }
         // Add new
         for (Character ch : xmlABC) {
@@ -224,10 +226,10 @@ public class EncryptDecryptController {
     }
 
     private void createDynamicOutputKeyboardFromABC() {
-        List<Character> xmlABC = AppController.getConsoleApp().getXmlDTO().getABCFromXML();
+        List<Character> xmlABC = AppController.getModelMain().getXmlDTO().getABCFromXML();
         // Remove old keyboard buttons
-        for (int i = 0; i < mouseOutputFlowPane.getChildren().size(); i++) {
-            mouseOutputFlowPane.getChildren().remove(0);
+        if (mouseOutputFlowPane.getChildren().size() > 0) {
+            mouseOutputFlowPane.getChildren().subList(0, mouseOutputFlowPane.getChildren().size()).clear();
         }
         // Add new
         for (Character ch : xmlABC) {
@@ -243,7 +245,7 @@ public class EncryptDecryptController {
 
     @FXML
     void resetMachineStateButtonActionListener() {
-        AppController.getConsoleApp().resetMachine();
+        AppController.getModelMain().resetMachine();
         mainController.resetScreens(true, this);
 
         encryptionDecryptionInputButton.getStyleClass().remove("chosen-button");
@@ -272,17 +274,17 @@ public class EncryptDecryptController {
     }
 
     public void updateMachineStateAndStatistics(String currentMachineState) {
-        machineStatesConsole.setCurrentMachineState(currentMachineState);
-        currentMachineInitialStateLabel.setText(AppController.getConsoleApp().getMachineStatisticsAndHistory());
-        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getConsoleApp().getEngine().getEngineDTO());
+        machineStateModel.setCurrentMachineState(currentMachineState);
+        currentMachineInitialStateLabel.setText(AppController.getModelMain().getMachineStatisticsAndHistory());
+        currentMachineStateComponentController.setInitializedControllerComponents(AppController.getModelMain().getEngine().getEngineDTO());
     }
 
     public void resetMachineStateAndStatistics(boolean bool) {
         if (bool) {
             setCodeLabel.setText("Machine state has been successfully reset");
         }
-        machineStatesConsole.setCurrentMachineState(machineStatesConsole.getFirstMachineState());
-        currentMachineStateComponentController.resetMachineStateComponentComponent(AppController.getConsoleApp().getEngine().getEngineDTO());
+        machineStateModel.setCurrentMachineState(machineStateModel.getFirstMachineState());
+        currentMachineStateComponentController.resetMachineStateComponentComponent(AppController.getModelMain().getEngine().getEngineDTO());
     }
     class ClearStatusListener implements ChangeListener<String> {
         @Override public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
@@ -305,11 +307,11 @@ public class EncryptDecryptController {
         currentMachineStateComponentController.updateStylesheet(num);
         mainScrollPane.getStylesheets().remove(0);
         if (num.equals(0)) {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("encryptDecrypt/encryptDecryptStyleOne.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("encryptDecrypt/encryptDecryptStyleOne.css")).toString());
         } else if (num.equals(1)) {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("encryptDecrypt/encryptDecryptStyleTwo.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("encryptDecrypt/encryptDecryptStyleTwo.css")).toString());
         } else {
-            mainScrollPane.getStylesheets().add(getClass().getClassLoader().getResource("encryptDecrypt/encryptDecryptStyleThree.css").toString());
+            mainScrollPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("encryptDecrypt/encryptDecryptStyleThree.css")).toString());
         }
     }
 

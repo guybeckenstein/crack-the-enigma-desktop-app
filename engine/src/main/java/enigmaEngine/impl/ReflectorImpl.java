@@ -10,11 +10,6 @@ public class ReflectorImpl implements Reflector, Serializable {
     private final HashMap<Integer, Integer> indexPairs;
     private final ReflectorID id;
 
-    public ReflectorImpl(HashMap<Integer, Integer> indexPairs, ReflectorID id) {
-        this.indexPairs = indexPairs;
-        this.id = id;
-    }
-
     public ReflectorImpl(List<Integer> input, List<Integer> output, ReflectorID id) {
         this.id = id;
         this.indexPairs = new HashMap<>();
@@ -26,8 +21,7 @@ public class ReflectorImpl implements Reflector, Serializable {
     }
 
     @Override
-    public int findPairByIndex(int idx) {
-        // returns ReflectorDictionary[index], returns pairIndex
+    public int findPairByIndex(int idx) { // returns ReflectorDictionary[index]
         return this.getIndexPairs().get(idx);
     }
 
@@ -41,17 +35,17 @@ public class ReflectorImpl implements Reflector, Serializable {
     }
 
     @Override
-    public Reflector clone()  {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream;
-        ObjectInputStream objectInputStream;
-        
+    public Reflector clone() {
         try {
-            objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            super.clone();
+            Reflector clone;
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject(this);
-            objectInputStream = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
-            return (Reflector) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+            ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+            clone = (Reflector) objectInputStream.readObject();
+            return clone;
+        } catch (CloneNotSupportedException | IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

@@ -1,6 +1,6 @@
 package enigmaEngine;
 
-import dto.xmlDTO;
+import dto.XmlDTO;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.impl.InitializeEnigmaFromXML;
 import enigmaEngine.interfaces.EnigmaEngine;
@@ -19,16 +19,14 @@ public class InitializeEnigmaEngineComponents {
 
     public EnigmaEngine initializeEngine(SourceMode source, String path) throws InvalidRotorException, InvalidABCException, InvalidReflectorException, JAXBException, IOException, UnknownSourceException, InvalidMachineException, InvalidDecipherException, InvalidAgentsAmountException {
 
-        switch (source) {
-            case XML:
-                enigmaEngineInitializer = new InitializeEnigmaFromXML();
-                break;
-            default:
-                throw new UnknownSourceException("Unknown file extension source is given.");
+        if (source == SourceMode.XML) {
+            enigmaEngineInitializer = new InitializeEnigmaFromXML();
+        } else {
+            throw new UnknownSourceException("Unknown file extension source is given.");
         }
         return enigmaEngineInitializer.getEnigmaEngineFromSource(path);
     }
-    public xmlDTO initializeBriefXML(SourceMode source, String path, EnigmaEngine newEnigmaEngine) throws UnknownSourceException, InvalidMachineException, InvalidAgentsAmountException, JAXBException, InvalidDecipherException, InvalidRotorException, IOException, InvalidABCException, InvalidReflectorException {
+    public XmlDTO initializeBriefXML(String path, EnigmaEngine newEnigmaEngine) throws InvalidAgentsAmountException, JAXBException, InvalidDecipherException, IOException {
         return enigmaEngineInitializer.getBriefXMLFromSource(path, newEnigmaEngine);
     }
 }

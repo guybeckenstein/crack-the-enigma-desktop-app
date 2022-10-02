@@ -18,8 +18,8 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
 
     private final String abc;
     private final HashMap<Character, Character> abcMap;
-
-    private int currentRotorID, currentRotorNotch;
+    private int id;
+    private int notch;
 
     public CreateAndValidateEnigmaComponentsImpl(String abc) {
         this.abc = abc.toUpperCase();
@@ -31,10 +31,10 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
      * */
     @Override
     public Rotor createRotor(int id, int notch, List<Character> rightSide, List<Character> leftSide) throws InvalidRotorException {
-        currentRotorID = id;
-        currentRotorNotch = notch;
+        this.id = id;
+        this.notch = notch;
         validateRotor(rightSide, leftSide);
-        return new RotorImpl(currentRotorID, currentRotorNotch, rightSide, leftSide);
+        return new RotorImpl(this.id, this.notch, rightSide, leftSide);
     }
 
     @Override
@@ -97,25 +97,25 @@ public class CreateAndValidateEnigmaComponentsImpl implements CreateAndValidateE
 
     private void validateRotorSide(List<Character> side, String sideName) throws InvalidRotorException {
         if (new HashSet<>(side).size() != abc.length() || side.size() != abc.length()) {
-            throw new InvalidRotorException("Rotor #" + currentRotorID + " - " + sideName + " side" + ": all characters must be unique.");
+            throw new InvalidRotorException("Rotor #" + id + " - " + sideName + " side" + ": all characters must be unique.");
         }
 
         for (Character character : side) {
             if (!this.abcMap.containsKey(character)) {
-                throw new InvalidRotorException("Rotor #" + currentRotorID + " - " + sideName + " side" + ": all characters must be in machine's ABC.");
+                throw new InvalidRotorException("Rotor #" + id + " - " + sideName + " side" + ": all characters must be in machine's ABC.");
             }
         }
     }
 
     private void validateRotorNotch() throws InvalidRotorException {
-        if (currentRotorNotch < 0 || currentRotorNotch >= abc.length()) {
-            throw new InvalidRotorException("Rotor #" + currentRotorID + " notch must appear in machine's ABC.");
+        if (notch < 0 || notch >= abc.length()) {
+            throw new InvalidRotorException("Rotor #" + id + " notch must appear in machine's ABC.");
         }
     }
 
     private void validateRotorId() throws InvalidRotorException {
-        if (currentRotorID < 0) {
-            throw new InvalidRotorException("Rotor ID must be natural number, but " + currentRotorID + " was given.");
+        if (id < 0) {
+            throw new InvalidRotorException("Rotor ID must be natural number, but " + id + " was given.");
         }
     }
 

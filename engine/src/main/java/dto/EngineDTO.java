@@ -9,7 +9,6 @@ import java.util.stream.Collectors;
 // Engine->DTO->UI
 public class EngineDTO {
     private final int totalNumberOfRotors;
-    private final int totalReflectors;
     private final Map<Character, Character> plugBoard;
     private final String selectedReflector;
     private final List<Character> currentSelectedRotorsPositions;
@@ -17,7 +16,6 @@ public class EngineDTO {
     private final int messagesSentCounter;
 
     public EngineDTO(int rotorsNum,
-                     int reflectorsNum,
                      Map<Character, Character> plugBoard,
                      String selectedReflector,
                      List<Character> currentSelectedRotorsPositions,
@@ -25,7 +23,6 @@ public class EngineDTO {
                      int messagesSentCounter) {
 
         this.totalNumberOfRotors = rotorsNum;
-        this.totalReflectors = reflectorsNum;
         this.plugBoard = plugBoard;
         this.selectedReflector = selectedReflector;
         this.currentSelectedRotorsPositions = currentSelectedRotorsPositions;
@@ -35,10 +32,6 @@ public class EngineDTO {
 
     public int getTotalNumberOfRotors() {
         return this.totalNumberOfRotors;
-    }
-
-    public int getTotalReflectors() {
-        return this.totalReflectors;
     }
 
     public Map<Character, Character> getPlugBoard() {

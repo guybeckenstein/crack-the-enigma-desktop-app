@@ -1,8 +1,6 @@
 package ui.interfaces;
 
-import automateDecryption.Difficulty;
-import automateDecryption.DecryptionManagerTask;
-import dto.xmlDTO;
+import dto.XmlDTO;
 import enigmaEngine.exceptions.*;
 import ui.historyAndStatistics.MachineHistoryAndStatistics;
 import enigmaEngine.interfaces.EnigmaEngine;
@@ -13,11 +11,8 @@ import java.util.Set;
 
 public interface Input {
 
-    // Only full path is given, not just file
-
     String getCurrentMachineStateAsString();
-    xmlDTO getXmlDTO();
-    DecryptionManagerTask getBruteForceTaskManager();
+    XmlDTO getXmlDTO();
     int getMessageCounter();
     MachineHistoryAndStatistics getMachineHistoryStates();
     EnigmaEngine getEngine();
@@ -28,7 +23,4 @@ public interface Input {
     void resetMachine();
     String getMachineStatisticsAndHistory();
     Set<String> getWordsDictionary();
-    void setDMProperties(int agents, int missionSize, Difficulty difficulty);
-    void startResumeDM();
-    void setEncryptedText(String text);
 }

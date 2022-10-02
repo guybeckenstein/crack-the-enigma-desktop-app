@@ -1,20 +1,24 @@
 package dto;
 
 import java.util.List;
-public class xmlDTO {
+import java.util.Set;
+
+public class XmlDTO {
     private final List<Integer> rotorsFromXML;
     private final List<String> reflectorsFromXML;
     private final List<Character> ABCFromXML;
 
-    private final List<String> dictionaryWordsFromXML;
+    private final Set<String> dictionaryWordsFromXML;
+    private final String excludedCharacters;
     private final int totalAgents;
 
-    public xmlDTO(List<Integer> rotorsFromXML, List<String> reflectorsFromXML, List<Character> ABCFromXML,
-                  List<String> dictionaryWordsFromXML, int totalAgents) {
+    public XmlDTO(List<Integer> rotorsFromXML, List<String> reflectorsFromXML, List<Character> ABCFromXML,
+                  Set<String> dictionaryWordsFromXML, String excludedCharacters, int totalAgents) {
         this.rotorsFromXML = rotorsFromXML;
         this.reflectorsFromXML = reflectorsFromXML;
         this.ABCFromXML = ABCFromXML;
         this.dictionaryWordsFromXML = dictionaryWordsFromXML;
+        this.excludedCharacters = excludedCharacters;
         this.totalAgents = totalAgents;
     }
 
@@ -27,8 +31,11 @@ public class xmlDTO {
     public List<Character> getABCFromXML() { // All ABC characters in XML
         return this.ABCFromXML;
     }
-    public List<String> getDictionaryWordsFromXML() {
+    public Set<String> getDictionaryWordsFromXML() {
         return this.dictionaryWordsFromXML;
+    }
+    public String getExcludedCharacters() {
+        return excludedCharacters;
     }
     public int getTotalAgents() {
         return this.totalAgents;

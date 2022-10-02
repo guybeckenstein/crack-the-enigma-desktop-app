@@ -1,7 +1,6 @@
 package enigmaEngine.impl;
 
 import enigmaEngine.interfaces.PlugBoard;
-import enigmaEngine.interfaces.Reflector;
 import javafx.util.Pair;
 
 import java.io.*;
@@ -52,7 +51,7 @@ public class PlugBoardImpl implements PlugBoard, Serializable {
     @SuppressWarnings("unchecked")
     @Override
     public HashMap<Character, Character> getPairs() {
-        return (HashMap<Character, Character>) this.abcPairs.clone();
+        return (HashMap<Character, Character>)this.abcPairs.clone();
     }
 
     @Override
@@ -66,22 +65,17 @@ public class PlugBoardImpl implements PlugBoard, Serializable {
     }
 
     @Override
-    public PlugBoard clonePlugBoard() {
-        return new PlugBoardImpl(new ArrayList<>(this.pairList));
-    }
-
-    @Override
-    public PlugBoard clone()  {
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        ObjectOutputStream objectOutputStream;
-        ObjectInputStream objectInputStream;
-
+    public PlugBoard clone() {
         try {
-            objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
+            super.clone();
+            PlugBoard clone;
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
             objectOutputStream.writeObject(this);
-            objectInputStream = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
-            return (PlugBoard) objectInputStream.readObject();
-        } catch (IOException | ClassNotFoundException e) {
+            ObjectInputStream objectInputStream = new ObjectInputStream(new ByteArrayInputStream(byteArrayOutputStream.toByteArray()));
+            clone = (PlugBoard) objectInputStream.readObject();
+            return clone;
+        } catch (CloneNotSupportedException | IOException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }

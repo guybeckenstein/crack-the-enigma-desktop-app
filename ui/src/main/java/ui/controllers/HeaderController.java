@@ -13,8 +13,8 @@ import javax.xml.bind.JAXBException;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class HeaderController {
@@ -52,16 +52,11 @@ public class HeaderController {
 
         styleChoiceBox.getItems().addAll("Style #1", "Style #2", "Style #3");
         styleChoiceBox.setValue("Style #1");
+        styleChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> mainController.updateStylesheet(number2));
+        
         animationChoiceBox.getItems().addAll("No Animation", "Animation");
         animationChoiceBox.setValue("No Animation");
-
-        styleChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
-            mainController.updateStylesheet(number2);
-        });
-
-        animationChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> {
-            mainController.updateAnimation(number2);
-        });
+        animationChoiceBox.getSelectionModel().selectedIndexProperty().addListener((observableValue, number, number2) -> mainController.updateAnimation(number2));
     }
 
     @FXML
@@ -101,21 +96,21 @@ public class HeaderController {
                 throw new FileAlreadyExistsException("File given is already defined as the Enigma machine.");
             } else if (!filePath.equals("")) {
 
-                AppController.getConsoleApp().readMachineFromXMLFile(filePath);
+                AppController.getModelMain().readMachineFromXMLFile(filePath);
                 xmlFilePathTextField.setText(filePath);
                 currXMLFilePath = filePath;
 
                 // Update reflector choice box options
-                List<Reflector.ReflectorID> unsortedReflectors = AppController.getConsoleApp().getEngine().getReflectors();
-                Collections.sort(unsortedReflectors);
+                List<Reflector.ReflectorID> unsortedReflectors = AppController.getModelMain().getXmlDTO().getReflectorsFromXML()
+                        .stream().map(Reflector.ReflectorID::valueOf).sorted().collect(Collectors.toList());
                 mainController.updateMachineDetailsScreen(
                         unsortedReflectors.stream().map(String::valueOf).collect(Collectors.toList()),
-                        Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getTotalNumberOfRotors()),
-                        Integer.toString(AppController.getConsoleApp().getEngine().getEngineDTO().getTotalReflectors())
+                        Integer.toString(AppController.getModelMain().getXmlDTO().getRotorsFromXML().size()),
+                        Integer.toString(AppController.getModelMain().getXmlDTO().getRotorsFromXML().size())
                 );
                 mainController.initializeMachineStates("NaN");
                 mainController.updateScreensDisability(true);
-                mainController.updateDynamicKeyboardsAndAmountAgents(AppController.getConsoleApp().getXmlDTO().getTotalAgents());
+                mainController.updateDynamicKeyboardsAndAmountAgents(AppController.getModelMain().getXmlDTO().getTotalAgents());
 
                 loadXMLErrorLabel.setText("Machine XML file successfully loaded.");
 
@@ -143,11 +138,11 @@ public class HeaderController {
     public void updateStylesheet(Number num) {
         headerHBox.getStylesheets().remove(0);
         if (num.equals(0)) {
-            headerHBox.getStylesheets().add(getClass().getClassLoader().getResource("header/headerStyleOne.css").toString());
+            headerHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("header/headerStyleOne.css")).toString());
         } else if (num.equals(1)) {
-            headerHBox.getStylesheets().add(getClass().getClassLoader().getResource("header/headerStyleTwo.css").toString());
+            headerHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("header/headerStyleTwo.css")).toString());
         } else {
-            headerHBox.getStylesheets().add(getClass().getClassLoader().getResource("header/headerStyleThree.css").toString());
+            headerHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("header/headerStyleThree.css")).toString());
         }
     }
 }

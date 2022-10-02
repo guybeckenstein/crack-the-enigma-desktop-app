@@ -11,6 +11,4 @@ public interface PlugBoard  {
     HashMap<Character, Character> getPairs();
     boolean containsPair(Pair<Character, Character> pair);
     List<Pair<Character,Character>> getPairList();
-    PlugBoard clonePlugBoard();
-
 }

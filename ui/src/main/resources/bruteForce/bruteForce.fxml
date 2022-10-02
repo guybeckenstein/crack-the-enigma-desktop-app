@@ -123,7 +123,7 @@
                         </HBox>
                         <HBox prefHeight="67.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#resetMachineStateButtonActionListener" prefHeight="42.0" prefWidth="249.0" styleClass="input-button" text="Reset Current Machine State" wrapText="true">
+                              <Button mnemonicParsing="false" onAction="#resetMachineStateButtonActionListener" prefHeight="42.0" prefWidth="249.0" text="Reset Current Machine State" wrapText="true">
                                  <HBox.margin>
                                     <Insets top="9.0" />
                                  </HBox.margin>
@@ -220,9 +220,9 @@
                               <Insets left="5.0" />
                            </GridPane.margin></Label>
                         <Label styleClass="header-label" text="Mission Properties" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <Label styleClass="key-label" text="Total Agents:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-                        <Label styleClass="key-label" text="Difficulty Level:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-                        <Label styleClass="key-label" text="Mission Size:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                        <Label text="Total Agents:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                        <Label text="Difficulty Level:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                        <Label text="Mission Size:" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
                         <Label fx:id="totalAgentsLabel" styleClass="value-label" text="NaN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                         <Label fx:id="difficultyLevelLabel" styleClass="value-label" text="Easy" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
                         <Label fx:id="missionSizeLabel" styleClass="value-label" text="NaN" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
@@ -253,7 +253,7 @@
                               <Insets left="100.0" />
                            </GridPane.margin>
                         </TextFlow>
-                        <Button fx:id="setDMProperties" minHeight="77.0" mnemonicParsing="false" onAction="#setDMPropertiesActionListener" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
+                        <Button minHeight="77.0" mnemonicParsing="false" onAction="#setDMPropertiesActionListener" prefHeight="72.0" prefWidth="233.0" text="Set Properties" GridPane.columnIndex="3" GridPane.rowIndex="3" GridPane.rowSpan="3">
                            <GridPane.margin>
                               <Insets top="30.0" />
                            </GridPane.margin>
@@ -307,7 +307,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <ScrollPane centerShape="false" fitToHeight="true" fitToWidth="true" focusTraversable="false" prefWidth="400.0" HBox.hgrow="ALWAYS">
+                  <ScrollPane centerShape="false" fitToHeight="true" fitToWidth="true" prefWidth="400.0" HBox.hgrow="ALWAYS">
                      <HBox.margin>
                         <Insets bottom="10.0" right="50.0" top="10.0" />
                      </HBox.margin>

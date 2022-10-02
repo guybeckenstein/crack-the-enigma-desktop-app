@@ -1,8 +1,8 @@
 package enigmaEngine.impl;
 
 import enigmaEngine.CreateAndValidateEnigmaComponentsImpl;
-import enigmaEngine.WordsDictionary;
-import dto.xmlDTO;
+import decryptionManager.WordsDictionary;
+import dto.XmlDTO;
 import enigmaEngine.exceptions.*;
 import enigmaEngine.interfaces.*;
 import enigmaEngine.schemaBinding.*;
@@ -23,7 +23,7 @@ public class InitializeEnigmaFromXML implements InitializeEnigma {
     private CreateAndValidateEnigmaComponents createAndValidateEnigmaComponents;
 
     @Override
-    public EnigmaEngine getEnigmaEngineFromSource(String path) throws IOException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException, InvalidDecipherException, InvalidAgentsAmountException {
+    public EnigmaEngine getEnigmaEngineFromSource(String path) throws IOException, JAXBException, RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
         CTEEnigma xmlOutput = getSourceFromXML(path);
         return getEnigmaEngine(xmlOutput);
     }
@@ -45,7 +45,7 @@ public class InitializeEnigmaFromXML implements InitializeEnigma {
 
 
     @SuppressWarnings("unchecked")
-    private EnigmaEngine getEnigmaEngine(CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException, InvalidDecipherException, InvalidAgentsAmountException {
+    private EnigmaEngine getEnigmaEngine(CTEEnigma xmlOutput) throws RuntimeException, InvalidABCException, InvalidReflectorException, InvalidRotorException, InvalidMachineException {
         // Machine
         CTEMachine machine = xmlOutput.getCTEMachine();
         if (machine == null) {
@@ -80,9 +80,7 @@ public class InitializeEnigmaFromXML implements InitializeEnigma {
         HashMap<Reflector.ReflectorID, Reflector> reflectors = (HashMap<Reflector.ReflectorID, Reflector>)importCTEReflectors(cteReflectors, new HashMap<>());
         createAndValidateEnigmaComponents.validateReflectorsIDs(reflectors);
 
-        EnigmaEngine newEnigmaEngine = new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
-
-        return newEnigmaEngine;
+        return new EnigmaEngineImpl(rotors, reflectors, new PlugBoardImpl(), cteMachineABC);
     }
 
     private HashMap<?, ?> importCTERotors(CTERotors cteRotors, HashMap<Object, Object> rotors) throws InvalidRotorException {
@@ -146,7 +144,7 @@ public class InitializeEnigmaFromXML implements InitializeEnigma {
     }
 
     @Override
-    public xmlDTO getBriefXMLFromSource(String path, EnigmaEngine newEnigmaEngine) throws JAXBException, IOException, InvalidDecipherException, InvalidAgentsAmountException {
+    public XmlDTO getBriefXMLFromSource(String path, EnigmaEngine newEnigmaEngine) throws JAXBException, IOException, InvalidDecipherException, InvalidAgentsAmountException {
         CTEEnigma xmlOutput = getSourceFromXML(path);
 
         CTEDecipher decipher = xmlOutput.getCTEDecipher();
@@ -181,9 +179,9 @@ public class InitializeEnigmaFromXML implements InitializeEnigma {
         for (int i = 0; i < excludedCharacters.length(); i++) {
             nonSeparatedDictionaryWordsValid = nonSeparatedDictionaryWordsWithExcluded.replace(excludedCharacters.substring(i, i + 1), "");
         }
-        List<String> dictionaryWords = Arrays.asList(nonSeparatedDictionaryWordsValid.split(" "));
+        Set<String> dictionaryWords = new HashSet<>(Arrays.asList(nonSeparatedDictionaryWordsValid.split(" ")));
 
 
-        return new xmlDTO(rotorsFromXML, reflectorsFromXML, ABCFromXML, dictionaryWords, decipher.getAgents());
+        return new XmlDTO(rotorsFromXML, reflectorsFromXML, ABCFromXML, dictionaryWords, excludedCharacters, decipher.getAgents());
     }
 }

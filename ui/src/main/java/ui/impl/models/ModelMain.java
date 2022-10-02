@@ -1,8 +1,7 @@
-package ui.impl;
+package ui.impl.models;
 
-import ui.InitCode;
-import automateDecryption.Difficulty;
-import automateDecryption.DecryptionManagerTask;
+import dto.XmlDTO;
+import ui.CodeGeneratorModel;
 import dto.EngineDTO;
 import enigmaEngine.exceptions.*;
 import ui.historyAndStatistics.MachineCodeData;
@@ -19,13 +18,11 @@ import java.util.*;
 
 public class ModelMain implements Input {
     private EnigmaEngine engine;
-    private dto.xmlDTO xmlDTO;
-    private MachineHistoryAndStatistics machineHistoryAndStatistics; // Screen 2
-    private DecryptionManagerTask bruteForceTaskManager; // Screen 3
+    private XmlDTO xmlDTO;
+    private final MachineHistoryAndStatistics machineHistoryAndStatistics; // Screen 2 (machine encrypt / decrypt)
 
     public ModelMain() {
         this.machineHistoryAndStatistics = new MachineHistoryAndStatistics();
-        this.bruteForceTaskManager = new DecryptionManagerTask();
     }
 
     @Override
@@ -35,13 +32,8 @@ public class ModelMain implements Input {
     }
 
     @Override
-    public dto.xmlDTO getXmlDTO() {
+    public XmlDTO getXmlDTO() {
         return xmlDTO;
-    }
-
-    @Override
-    public DecryptionManagerTask getBruteForceTaskManager() {
-        return bruteForceTaskManager;
     }
 
     @Override
@@ -64,7 +56,7 @@ public class ModelMain implements Input {
     public void readMachineFromXMLFile(String path) throws InvalidMachineException, JAXBException, InvalidRotorException, IOException, InvalidABCException, UnknownSourceException, InvalidReflectorException, InvalidDecipherException, InvalidAgentsAmountException {
         InitializeEnigmaEngineComponents initializeEnigmaEngineComponents = new InitializeEnigmaEngineComponents();
         this.engine = initializeEnigmaEngineComponents.initializeEngine(InitializeEnigmaEngineComponents.SourceMode.XML, path);
-        this.xmlDTO = initializeEnigmaEngineComponents.initializeBriefXML(InitializeEnigmaEngineComponents.SourceMode.XML, path, this.engine);
+        this.xmlDTO = initializeEnigmaEngineComponents.initializeBriefXML(path, this.engine);
     }
 
     // Function changed.
@@ -133,7 +125,7 @@ public class ModelMain implements Input {
     // Added check case. For instance: now "2,2" or "0, 2" raises exception. Also added more information if a user inserts an invalid rotor ID.
     private List<Integer> getRotorsFromUserInput(String rotors) throws InvalidRotorException {
         System.out.println("Enter your desired rotor IDs starting from 1, separated by a comma without spaces.");
-        final List<Integer> selectedRotorsDeque = InitCode.createSelectedRotorsList(rotors);
+        final List<Integer> selectedRotorsDeque = CodeGeneratorModel.createSelectedRotorsList(rotors);
         if (new HashSet<>(selectedRotorsDeque).size() < selectedRotorsDeque.size()) {
             throw new InvalidRotorException("A rotor ID was inserted several times. Please insert only unique values.");
         }
@@ -150,7 +142,7 @@ public class ModelMain implements Input {
 
     private void getStartingPositionsFromUserInput(List<Integer> selectedRotorsDeque, String startingPositions) throws InvalidCharactersException, InvalidRotorException {
         System.out.println("Enter all your desired rotors starting positions without separation between them.");
-        this.engine.setSelectedRotors(selectedRotorsDeque, InitCode.createStartingCharactersList(startingPositions));
+        this.engine.setSelectedRotors(selectedRotorsDeque, CodeGeneratorModel.createStartingCharactersList(startingPositions));
     }
 
     private void getReflectorFromUserInput(String reflectorID) throws InvalidReflectorException {
@@ -167,7 +159,7 @@ public class ModelMain implements Input {
 
     private void getPlugBoardPairsFromUserInput(String plugBoardPairs) throws InvalidPlugBoardException {
         System.out.println("Enter all your desired plug board pairs without separation between them.");
-        this.engine.setPlugBoard(InitCode.createPlugBoard(plugBoardPairs));
+        this.engine.setPlugBoard(CodeGeneratorModel.createPlugBoard(plugBoardPairs));
     }
 
     // Function changed. I added a call to 'addEnigmaCode' and this adds the new Enigma code.
@@ -220,30 +212,5 @@ public class ModelMain implements Input {
     @Override
     public Set<String> getWordsDictionary() {
         return engine.getWordsDictionary().getWords();
-    }
-
-    @Override
-    public void setDMProperties(int agents, int missionSize, Difficulty difficulty) {
-        if (bruteForceTaskManager.isRunning()) {
-            System.out.println("Cannot change DM properties while running.");
-        } else {
-            bruteForceTaskManager.setNumberOfAgents(agents);
-            bruteForceTaskManager.setTaskSize(missionSize);
-            bruteForceTaskManager.setDifficulty(difficulty);
-        }
-    }
-    @Override
-    public void startResumeDM() {
-        if (bruteForceTaskManager.isRunning()) {
-            System.out.println("Cannot start DM while running.");
-        } else {
-//            bruteForceTaskManager.setTextToCrack();
-            bruteForceTaskManager.initialize(engine, Difficulty.EASY);
-            new Thread(bruteForceTaskManager).start();
-        }
-    }
-    @Override
-    public void setEncryptedText(String text) {
-        bruteForceTaskManager.setEncryptedText(text);
     }
 }

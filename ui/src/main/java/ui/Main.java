@@ -9,6 +9,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Objects;
 
 public class Main extends Application {
     private final String APP_FXML_INCLUDE_RESOURCE = "main/app.fxml";
@@ -25,7 +26,7 @@ public class Main extends Application {
             FXMLLoader fxmlLoader = new FXMLLoader();
             URL url = getClass().getClassLoader().getResource(APP_FXML_INCLUDE_RESOURCE);
             fxmlLoader.setLocation(url);
-            ScrollPane root = fxmlLoader.load(url.openStream());
+            ScrollPane root = fxmlLoader.load(Objects.requireNonNull(url).openStream());
             // Set scene
             Scene scene = new Scene(root, 902, 602);
             primaryStage.setOnHidden(e -> Platform.exit());

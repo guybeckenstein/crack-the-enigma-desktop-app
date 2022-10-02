@@ -1,12 +1,12 @@
 package ui.controllers;
 
-import automateDecryption.Difficulty;
 import javafx.scene.layout.BorderPane;
-import ui.impl.ModelMain;
+import ui.impl.models.ModelMain;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 public class AppController {
@@ -37,7 +37,7 @@ public class AppController {
         }
     }
 
-    public static ModelMain getConsoleApp() {
+    public static ModelMain getModelMain() {
         return modelMainApp;
     }
 
@@ -96,18 +96,14 @@ public class AppController {
         return modelMainApp.getWordsDictionary();
     }
 
-    public void setDMProperties(int agents, int missionSize, Difficulty difficulty) {
-        modelMainApp.setDMProperties(agents, missionSize, difficulty);
-    }
-
     public void updateStylesheet(Number num) {
         mainBorderPane.getStylesheets().remove(0);
         if (num.equals(0)) {
-            mainBorderPane.getStylesheets().add(getClass().getClassLoader().getResource("main/generalStyleOne.css").toString());
+            mainBorderPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("main/generalStyleOne.css")).toString());
         } else if (num.equals(1)) {
-            mainBorderPane.getStylesheets().add(getClass().getClassLoader().getResource("main/generalStyleTwo.css").toString());
+            mainBorderPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("main/generalStyleTwo.css")).toString());
         } else {
-            mainBorderPane.getStylesheets().add(getClass().getClassLoader().getResource("main/generalStyleThree.css").toString());
+            mainBorderPane.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("main/generalStyleThree.css")).toString());
         }
         headerComponentController.updateStylesheet(num);
         machineDetailsComponentController.updateStylesheet(num);
