@@ -237,7 +237,7 @@
                         <TextField fx:id="missionSizeInput" minHeight="28.0" minWidth="188.0" prefWidth="188.0" promptText="Enter non-negative integer." GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <TextFlow id="numberOfMissionsTextFlow" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="7">
                            <children>
-                              <Label text="Each Agent Does">
+                              <Label text="Each Agent Performs">
                                  <padding>
                                     <Insets right="4.0" />
                                  </padding>
@@ -247,7 +247,7 @@
                                     <Insets right="4.0" />
                                  </padding>
                               </Label>
-                              <Label text="Missions." />
+                              <Label text="Tasks." />
                            </children>
                            <GridPane.margin>
                               <Insets left="100.0" />
@@ -276,7 +276,7 @@
                         <Insets left="20.0" top="28.0" />
                      </HBox.margin>
                   </Label>
-                  <VBox spacing="2.0">
+                  <VBox prefWidth="170.0" spacing="2.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -292,7 +292,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Avg Agent Find Time:" wrapText="true" VBox.vgrow="NEVER">
+                        <Label alignment="TOP_LEFT" contentDisplay="TOP" text="Avg time to find a candidate:" wrapText="true" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -300,11 +300,15 @@
                               <Insets top="4.0" />
                            </padding>
                         </Label>
-                        <Label fx:id="averageTime" alignment="TOP_LEFT" contentDisplay="TOP" text="0.0000" wrapText="true" VBox.vgrow="NEVER">
+                        <HBox spacing="4.0" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
-                        </Label>
+                           <children>
+                              <Label fx:id="averageTime" alignment="TOP_LEFT" contentDisplay="TOP" text="0.000000" wrapText="true" />
+                              <Label fx:id="averageTime1" alignment="TOP_LEFT" contentDisplay="TOP" text="seconds." wrapText="true" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                   <ScrollPane centerShape="false" fitToHeight="true" fitToWidth="true" prefWidth="400.0" HBox.hgrow="ALWAYS">

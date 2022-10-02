@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 import java.util.List;
 
-public class AgentMission implements Runnable {
+public class AgentTask implements Runnable {
     private final EnigmaEngine enigmaEngine;
     private final ConfigurationDTO configurationDTO;
     private final String userOutput;
@@ -21,7 +21,7 @@ public class AgentMission implements Runnable {
 
     private final List<Pair<String, Double>> candidatesPairs;
 
-    public AgentMission(EnigmaEngine enigmaEngine, ConfigurationDTO configurationDTO, String userOutput, int missionSize, List<Pair<String, Double>> candidatesPairs) {
+    public AgentTask(EnigmaEngine enigmaEngine, ConfigurationDTO configurationDTO, String userOutput, int missionSize, List<Pair<String, Double>> candidatesPairs) {
         this.enigmaEngine = enigmaEngine;
         this.configurationDTO = configurationDTO;
         this.userOutput = userOutput;

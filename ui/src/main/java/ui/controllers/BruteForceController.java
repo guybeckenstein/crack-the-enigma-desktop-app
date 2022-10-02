@@ -286,7 +286,7 @@ public class BruteForceController {
 
         progressBar.setProgress(0);
         progressPercentLabel.setText("0 %");
-        averageTime.setText("0.0000");
+        averageTime.setText("0.000000");
         finalCandidatesTextArea.setText("");
         timeElapsed = "0";
     }

@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="pom file updated">
+    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="impossible difficulty fixed">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/producer/BlockingProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/producer/BlockingProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/DecryptionManagerTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/threadPool/AgentMission.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/threadPool/AgentTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/bruteForce/bruteForce.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,7 +179,8 @@
       <workItem from="1664469575769" duration="39276000" />
       <workItem from="1664644022736" duration="9913000" />
       <workItem from="1664661196425" duration="16996000" />
-      <workItem from="1664678897310" duration="299000" />
+      <workItem from="1664678897310" duration="504000" />
+      <workItem from="1664679665682" duration="958000" />
     </task>
     <task id="LOCAL‎-00001" summary="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works">
       <created>1664399424005</created>
@@ -206,7 +210,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1664678333124</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL‎-00005" summary="impossible difficulty fixed">
+      <created>1664679395261</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL‎-00005" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1664679395261</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -239,7 +250,8 @@
     <MESSAGE value="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works" />
     <MESSAGE value="brute force completed - added thread pool, producer blocking queue and different difficulty levels. Successfully tested with logger." />
     <MESSAGE value="pom file updated" />
-    <option name="LAST_COMMIT_MESSAGE" value="pom file updated" />
+    <MESSAGE value="impossible difficulty fixed" />
+    <option name="LAST_COMMIT_MESSAGE" value="impossible difficulty fixed" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -248,11 +260,6 @@
           <url>file://$PROJECT_DIR$/ui/src/main/java/ui/decryptionManager/log/LoggingExample.java</url>
           <line>17</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/ui/src/main/java/ui/controllers/BruteForceController.java</url>
-          <line>429</line>
-          <option name="timeStamp" value="23" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -7,7 +7,7 @@ import javafx.util.Pair;
 import ui.controllers.BruteForceController;
 import ui.decryptionManager.agent.AgentThreadFactory;
 import ui.decryptionManager.producer.BlockingProducer;
-import ui.decryptionManager.threadPool.AgentMission;
+import ui.decryptionManager.threadPool.AgentTask;
 import ui.decryptionManager.threadPool.ThreadPool;
 
 import java.text.DecimalFormat;
@@ -48,7 +48,7 @@ public class DecryptionManagerTask extends Task<Boolean> {
         this.controller.bindTaskToUIComponents(this, onFinish);
 
         averageTimeTook = 0;
-        df = new DecimalFormat("#.#####");
+        df = new DecimalFormat("#.#######");
         candidates = new LinkedList<>();
         totalMissions = agents * limit;
         updateProgress(0, totalMissions);
@@ -79,7 +79,7 @@ public class DecryptionManagerTask extends Task<Boolean> {
         while (iterations.get() <= totalMissions) {
             checkPaused(); // if user paused the brute force process
             ConfigurationDTO configurationDTO = dmBlockingQueue.take();
-            dmExecutor.getQueue().put(new AgentMission(controller.getTaskCurrentConfiguration().deepClone(),
+            dmExecutor.getQueue().put(new AgentTask(controller.getTaskCurrentConfiguration().deepClone(),
                     configurationDTO, userOutput, missionSize, candidatesPairs));
             Thread.sleep(1);
             try {
