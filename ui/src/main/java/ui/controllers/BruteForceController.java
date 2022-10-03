@@ -191,6 +191,7 @@ public class BruteForceController {
 
             Thread th = new Thread(dmTask);
             th.start();
+            th.setDaemon(true);
             System.out.println("Starting the task...");
         } else {
             throw new RuntimeException();

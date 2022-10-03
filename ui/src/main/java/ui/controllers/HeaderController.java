@@ -21,8 +21,6 @@ public class HeaderController {
     private AppController mainController;
     @FXML private HBox headerHBox;
     private String currXMLFilePath;
-
-    // private final IntegerProperty chosenButton = new SimpleIntegerProperty();
     @FXML private TextField xmlFilePathTextField;
 
     @FXML private Label loadXMLErrorLabel;
