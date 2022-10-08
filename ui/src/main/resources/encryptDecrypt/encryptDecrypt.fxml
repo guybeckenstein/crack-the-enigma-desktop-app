@@ -20,8 +20,8 @@
                   <Insets />
                </BorderPane.margin>
                <children>
-                  <fx:include fx:id="firstMachineStateComponent" source="../machineStates/firstMachineState.fxml" HBox.hgrow="SOMETIMES" />
-                  <fx:include fx:id="currentMachineStateComponent" source="../machineStates/currentMachineState.fxml" HBox.hgrow="SOMETIMES" />
+                  <fx:include fx:id="firstMachineStateComponent" source="../machineDetails/machineStates/firstMachineState.fxml" HBox.hgrow="SOMETIMES" />
+                  <fx:include fx:id="currentMachineStateComponent" source="../machineDetails/machineStates/currentMachineState.fxml" HBox.hgrow="SOMETIMES" />
                </children>
             </HBox>
          </top>

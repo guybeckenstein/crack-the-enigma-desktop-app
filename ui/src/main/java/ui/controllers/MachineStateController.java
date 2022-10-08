@@ -83,11 +83,11 @@ public class MachineStateController {
     public void updateStylesheet(Number num) {
         mainHBox.getStylesheets().remove(0);
         if (num.equals(0)) {
-            mainHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineStates/machineStateStyleOne.css")).toString());
+            mainHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineDetails/machineStates/machineStateStyleOne.css")).toString());
         } else if (num.equals(1)) {
-            mainHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineStates/machineStateStyleTwo.css")).toString());
+            mainHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineDetails/machineStates/machineStateStyleTwo.css")).toString());
         } else {
-            mainHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineStates/machineStateStyleThree.css")).toString());
+            mainHBox.getStylesheets().add(Objects.requireNonNull(getClass().getClassLoader().getResource("machineDetails/machineStates/machineStateStyleThree.css")).toString());
         }
     }
 }

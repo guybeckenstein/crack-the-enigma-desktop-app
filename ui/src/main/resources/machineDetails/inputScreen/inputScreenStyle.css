@@ -1,0 +1,64 @@
+.main-vbox {
+    -fx-background-color: transparent;
+}
+
+.main-vbox #title {
+    -fx-font-family: Arial;
+    -fx-font-size: 16px;
+    -fx-font-weight: Bold;
+    -fx-text-fill: #08c97f;
+}
+
+.main-vbox .header-label {
+    -fx-font-family: Arial;
+    -fx-font-size: 14px;
+    -fx-font-weight: Bold;
+    -fx-text-fill: #197be0;
+}
+
+.main-vbox #listSelectionView .grid-pane {
+    -fx-background-color: transparent;
+}
+
+.main-vbox #listSelectionView .list-view {
+    -fx-border-color: #505050;
+}
+
+.main-vbox #listSelectionView .button {
+    -fx-background-radius: 4px;
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+    -fx-effect: none;
+}
+
+.main-vbox .choice-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #197be0;
+}
+
+.main-vbox .choice-box .open-button .arrow {
+    -fx-border-color: #197be0;
+}
+
+.main-vbox #submitButton {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #dcdcdc;
+    -fx-font-family: Arial;
+    -fx-font-size: 24px;
+    -fx-font-weight: Bold;
+    -fx-text-fill: #e81b69;
+
+    -fx-pref-width: 122px;
+    -fx-pref-height: 51px;
+}
+
+.main-vbox #submitButton:hover {
+    -fx-background-color: #e6e6e6;
+    -fx-border-color: #c3c3c3;
+    -fx-font-family: Arial;
+    -fx-font-size: 24px;
+    -fx-font-weight: Bold;
+    -fx-text-fill: #ff468b;
+}

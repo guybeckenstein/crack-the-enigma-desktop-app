@@ -1,7 +1,5 @@
 package ui.controllers;
 
-import ui.impl.models.MachineStateModel;
-import ui.impl.models.Specifications;
 import enigmaEngine.exceptions.InvalidCharactersException;
 import enigmaEngine.exceptions.InvalidPlugBoardException;
 import enigmaEngine.exceptions.InvalidReflectorException;
@@ -11,7 +9,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import ui.impl.models.MachineStateModel;
+import ui.impl.models.Specifications;
+
 import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Objects;
@@ -22,10 +24,12 @@ public class MachineDetailsController {
     private AppController mainController;
     @FXML private MachineStateController firstMachineStateComponentController;
     @FXML private MachineStateController currentMachineStateComponentController;
+    @FXML private InputScreenController inputScreenComponentController;
     // Models
     private final Specifications specs;
     private final MachineStateModel machineStatesConsole;
-    // Machine configuration status
+    // Machine configuration status and input screen controller
+    @FXML private HBox topHBox;
     @FXML private Label maxRotorsInMachineLabel;
     @FXML private Label currentUsedMachineRotorsLabel;
     @FXML private Label totalReflectorsInMachineLabel;
@@ -54,8 +58,8 @@ public class MachineDetailsController {
 
     @FXML
     private void initialize() {
-        if (firstMachineStateComponentController != null && currentMachineStateComponentController != null) {
-
+        if (firstMachineStateComponentController != null && currentMachineStateComponentController != null && inputScreenComponentController != null) {
+            inputScreenComponentController.setMainController(this);
             // Only for binding the ENTER key to the input text field
             setCodeButton.setDefaultButton(true);
             setCodeButton.setOnAction(event -> getConfigurationFromUser());
@@ -76,6 +80,7 @@ public class MachineDetailsController {
     }
 
     private void setConfigurationDisability(boolean bool) {
+        topHBox.setDisable(bool);
         configurationVBox.setDisable(bool);
     }
 
@@ -88,19 +93,23 @@ public class MachineDetailsController {
     void getConfigurationFromUser() {
         if (initializeEnigmaCode(true)) {
             String tmp = setCodeLabel.getText();
-            updateConfigurationFieldsAndMachineStateDisability();
+            updateConfigurationsAndScreens();
             setCodeLabel.setText(tmp);
-            mainController.resetScreens(false, null);
         }
     }
 
     @FXML
     void setConfigurationRandomly() {
         if (initializeEnigmaCode(false)) {
-            updateConfigurationFieldsAndMachineStateDisability();
-            mainController.resetScreens(false, null);
+            updateConfigurationsAndScreens();
         }
     }
+
+    public void updateConfigurationsAndScreens() {
+        updateConfigurationFieldsAndMachineStateDisability();
+        mainController.resetScreens(false, null);
+    }
+
     private boolean initializeEnigmaCode(boolean isManual) {
         String rotors, startingPositions, plugBoardPairs, reflectorID;
         if (isManual) {
@@ -200,6 +209,10 @@ public class MachineDetailsController {
     public void resetMachineStateAndStatus() {
         machineStatesConsole.setCurrentMachineState(machineStatesConsole.getFirstMachineState());
         currentMachineStateComponentController.resetMachineStateComponentComponent(AppController.getModelMain().getEngine().getEngineDTO());
+    }
+
+    public void updateInputLists() {
+        inputScreenComponentController.setXmlDTO(AppController.getModelMain().getXmlDTO());
     }
 
     class ClearStatusListener implements ChangeListener<String> {

@@ -29,12 +29,15 @@ public class Main extends Application {
             ScrollPane root = fxmlLoader.load(Objects.requireNonNull(url).openStream());
             // Set scene
             Scene scene = new Scene(root, 902, 602);
-            primaryStage.setOnHidden(e -> Platform.exit());
             primaryStage.setScene(scene);
             primaryStage.show();
+            // Handle quitting
+            primaryStage.setOnCloseRequest(event -> {
+                Platform.exit();
+                System.exit(0);
+            });
         } catch (LoadException | NullPointerException e) {
             e.printStackTrace();
-            System.out.println("Exception cause: resource not found.");
         }
 }
 

@@ -114,4 +114,8 @@ public class AppController {
     public void updateAnimation(Number num) {
         encryptDecryptComponentController.updateAnimation(num);
     }
+
+    public void updateInputLists() {
+        machineDetailsComponentController.updateInputLists();
+    }
 }

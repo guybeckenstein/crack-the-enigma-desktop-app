@@ -102,6 +102,7 @@ public class HeaderController {
             } else if (!filePath.equals("")) {
 
                 AppController.getModelMain().readMachineFromXMLFile(filePath);
+                mainController.updateInputLists();
                 xmlFilePathTextField.setText(filePath);
                 currXMLFilePath = filePath;
 

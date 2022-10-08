@@ -4,13 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="load xml button 'remembers' the last file directory">
+    <list default="true" id="2a174802-436c-4f66-8641-297d5e9c839a" name="Changes" comment="The task (brute force) thread is daemon now">
+      <change afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/InputScreenController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/inputScreen/inputScreenStyle.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/AppController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/HeaderController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineDetailsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineStateController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/java/ui/controllers/MachineStateController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/encryptDecrypt/encryptDecrypt.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/encryptDecrypt/encryptDecrypt.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineDetails.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineDetails.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/machineStates/currentMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineStates/currentMachineState.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/machineStates/firstMachineState.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineStates/firstMachineState.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/machineStates/machineStateStyleOne.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineStates/machineStateStyleOne.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/machineStates/machineStateStyleThree.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineStates/machineStateStyleThree.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ui/src/main/resources/machineStates/machineStateStyleTwo.css" beforeDir="false" afterPath="$PROJECT_DIR$/ui/src/main/resources/machineDetails/machineStates/machineStateStyleTwo.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -27,6 +45,14 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="alwaysUpdateSnapshots" value="true" />
+        <option name="mavenHome" value="$PROJECT_DIR$/../../../../Program Files/apache-maven-3.8.6" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
   </component>
@@ -36,24 +62,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit4&quot;,
-    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4&quot;: &quot;&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;1.8&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/guybe/IdeaProjects/crack-the-enigma/engine/src/main/java&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15234375&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
+    "jdk.selected.JAVA_MODULE": "1.8",
+    "last_opened_file_path": "C:/Users/guybe/IdeaProjects/crack-the-enigma/engine/src/main/java",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15234375",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="ui.decryptionManager" />
@@ -66,11 +92,11 @@
       <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\src\main\java" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\bruteForce" />
+      <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\machineDetails" />
       <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\screen3" />
       <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\screen2" />
       <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\screen1" />
-      <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\main" />
-      <recent name="C:\Users\guybe\IdeaProjects\crack-the-enigma\ui\src\main\resources\machineStates" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -179,6 +205,12 @@
       <workItem from="1664679665682" duration="958000" />
       <workItem from="1664680633022" duration="995000" />
       <workItem from="1664685071262" duration="135000" />
+      <workItem from="1664823828496" duration="103000" />
+      <workItem from="1664879736224" duration="65000" />
+      <workItem from="1664879862474" duration="3000" />
+      <workItem from="1665237753789" duration="2029000" />
+      <workItem from="1665246760437" duration="2009000" />
+      <workItem from="1665249665804" duration="13081000" />
     </task>
     <task id="LOCAL‎-00001" summary="brute force works perfectly still without agents, mission size, thread pool and blocking queue.&#10;except for this 100% works">
       <created>1664399424005</created>
@@ -229,7 +261,14 @@
       <option name="project" value="LOCAL‎" />
       <updated>1664685162570</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL‎-00008" summary="The task (brute force) thread is daemon now">
+      <created>1664823912279</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL‎-00008" />
+      <option name="project" value="LOCAL‎" />
+      <updated>1664823912279</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -265,7 +304,8 @@
     <MESSAGE value="impossible difficulty fixed" />
     <MESSAGE value="fixed English where needed" />
     <MESSAGE value="load xml button 'remembers' the last file directory" />
-    <option name="LAST_COMMIT_MESSAGE" value="load xml button 'remembers' the last file directory" />
+    <MESSAGE value="The task (brute force) thread is daemon now" />
+    <option name="LAST_COMMIT_MESSAGE" value="The task (brute force) thread is daemon now" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
