@@ -1,4 +1,4 @@
-# EnigmaMachine - Desktop application
+# Enigma Machine - Desktop application
 Enigma machine Desktop application implementation, based on Apache Maven tool, including automatic decipher process (using brute force). 
 
 The machine is a generic one, not limited to a certain scale.
