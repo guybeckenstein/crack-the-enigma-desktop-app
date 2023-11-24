@@ -1,15 +1,13 @@
-# Enigma Machine - Desktop application
-Enigma machine Desktop application implementation, based on Apache Maven tool, including automatic decipher process (using brute force). 
-
-The machine is a generic one, not limited to a certain scale.
-
-The process involved working with multiple threads, files, collections and other OOP concepts and principles (e.g. interfaces, encapsulation, SOLID). 
-
-The project includes console, desktop and client-server architecture. As mentioned, this repository is has desktop architecture.
-
-Familiarity with Spring.
-
-
+# _Enigma Machine_ - Desktop application
+1. _**Enigma machine**_ Desktop application implementation, based on _**Apache Maven**_ tool, including automatic decipher process (using brute force). 
+2. The machine is a generic one, not limited to a certain scale.
+3. The process involved working with:
+   * Multiple threads
+   * Files
+   * Java 8 Collections 
+   * Other OOP concepts and principles (e.g. interfaces, encapsulation, SOLID).
+   * DTOs
+4. The project includes console, desktop and client-server architecture. As mentioned, this repository is has desktop architecture.
 
 Result:
 
